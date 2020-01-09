@@ -17,8 +17,6 @@
 # Review Open Issues 
 
 1. Project Description 
-2. License Header is missing
-3. Method Documentation 
-4. Tests 
-5. Short Sample 
-6. Change Legacy Library 
+2. Tests 
+3. Short Sample 
+4. Change Legacy Library 

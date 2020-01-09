@@ -30,9 +30,9 @@ package com.thinkenterprise.uuid.domain;
 /**
  * Enum propose List of Tyle Format. 
  *
- * @author Michael Schäfer
+ * @author Michael SchÃ¼fer
  * @author Ahmed Amedlous
- * @author Dr. Edgar Müller
+ * @author Dr. Edgar MÃ¼ller
  */
 public enum TypeFormat {
 

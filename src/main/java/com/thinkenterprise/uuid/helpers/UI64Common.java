@@ -31,9 +31,9 @@ import com.thinkenterprise.uuid.domain.GlobaleConstants;
 /**
  * UI64Common contain common UI64 functionality. 
  *
- * @author Michael Schäfer
+ * @author Michael SchÃ¼fer
  * @author Ahmed Amedlous
- * @author Dr. Edgar Müller
+ * @author Dr. Edgar MÃ¼ller
  */
 public final class UI64Common {
 
@@ -98,7 +98,7 @@ public final class UI64Common {
 
 	/**
 	 * Convertion between UI 64 representation and number
-	 * Diese Methode gibt long als Wert (471779603359996160) manchmal rück
+	 * Diese Methode gibt long als Wert (471779603359996160) manchmal rï¿½ck
 	 * 
 	 * @param x the UI64 to convert 
 	 * @return convertion between UI 64 representation and number
@@ -130,7 +130,7 @@ public final class UI64Common {
 				ov[(int) (j + 1)] = ov[(int) j];
 			ov[0] = x[0];
 			int m=0;
-			// ?? zu prüfen Fall Fehler
+			// ?? zu prï¿½fen Fall Fehler
 
 			for ( m=0 ; m < GlobaleConstants.UI64_DIGITS - 1; m++) {
 				x[m] = x[m + 1];
@@ -141,7 +141,7 @@ public final class UI64Common {
 	}
 	
 	/**
-	 * Die Methode gibt die generierende Liste UUID rück.
+	 * Die Methode gibt die generierende Liste UUID rï¿½ck.
 	 * store the 60 LSB of the time in the UUID  
 	 * @param converTime
 	 * @param n

@@ -32,9 +32,9 @@ import com.thinkenterprise.uuid.domain.GlobaleConstants;
 /**
  *  UI64 helpers. 
  *
- * @author Michael Schäfer
+ * @author Michael SchÃ¼fer
  * @author Ahmed Amedlous
- * @author Dr. Edgar Müller
+ * @author Dr. Edgar MÃ¼ller
  */
 public final class UI64 {
 

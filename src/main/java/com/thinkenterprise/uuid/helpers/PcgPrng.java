@@ -34,9 +34,9 @@ import com.thinkenterprise.uuid.domain.GlobaleConstants;
 /**
  * PcgPrng helps to create random Number from Time((PRNG)).
  *
- * @author Michael Schäfer
+ * @author Michael SchÃ¼fer
  * @author Ahmed Amedlous
- * @author Dr. Edgar Müller
+ * @author Dr. Edgar MÃ¼ller
  */
 public final class PcgPrng {
 

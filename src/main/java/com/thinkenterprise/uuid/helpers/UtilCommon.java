@@ -31,9 +31,9 @@ import org.apache.commons.lang.math.NumberUtils;
 /**
  * Common Util
  *
- * @author Michael Schäfer
+ * @author Michael SchÃ¼fer
  * @author Ahmed Amedlous
- * @author Dr. Edgar Müller
+ * @author Dr. Edgar MÃ¼ller
  */
 public class UtilCommon {
 

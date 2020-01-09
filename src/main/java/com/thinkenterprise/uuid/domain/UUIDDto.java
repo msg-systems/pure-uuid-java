@@ -29,9 +29,9 @@ package com.thinkenterprise.uuid.domain;
 /**
  * UUIDDto model
  *
- * @author Michael Schäfer
+ * @author Michael SchÃ¼fer
  * @author Ahmed Amedlous
- * @author Dr. Edgar Müller
+ * @author Dr. Edgar MÃ¼ller
  */
 public class UUIDDto {
 

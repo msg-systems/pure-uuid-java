@@ -163,7 +163,7 @@ public class UUIDDto {
 	 * @return the typeFormatSid
 	 */
 	public TypeFormat getTypeFormatNs() {
-		return typeFormatSid;
+		return typeFormatNs;
 	}
 	
 	/**

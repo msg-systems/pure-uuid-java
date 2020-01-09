@@ -1,3 +1,29 @@
+/*******************************************************************************
+ * *
+ * **  Design and Development by msg Applied Technology Research
+ * **  Copyright (c) 2019-2020 msg systems ag (http://www.msg-systems.com/)
+ * **  All Rights Reserved.
+ * ** 
+ * **  Permission is hereby granted, free of charge, to any person obtaining
+ * **  a copy of this software and associated documentation files (the
+ * **  "Software"), to deal in the Software without restriction, including
+ * **  without limitation the rights to use, copy, modify, merge, publish,
+ * **  distribute, sublicense, and/or sell copies of the Software, and to
+ * **  permit persons to whom the Software is furnished to do so, subject to
+ * **  the following conditions:
+ * **
+ * **  The above copyright notice and this permission notice shall be included
+ * **  in all copies or substantial portions of the Software.
+ * **
+ * **  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * **  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * **  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * **  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * **  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * **  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * *
+ ******************************************************************************/
 package com.thinkenterprise.uuid.helpers;
 
 import java.util.ArrayList;
@@ -9,11 +35,11 @@ import com.thinkenterprise.uuid.domain.GlobaleConstants;
 
 
 /**
- * ParseUUID helps to parse UUID from Text. 
+ * UI32Common with minimal UI32 functionality. 
  *
- * @author Michael Schaefer
+ * @author Michael Schäfer
  * @author Ahmed Amedlous
- * @author Dr. Edgar Mueller
+ * @author Dr. Edgar Müller
  */
 public final class UI32Common {
 
@@ -22,7 +48,12 @@ public final class UI32Common {
 	 * the MD5 and SHA1 digests!
 	 */
 
-	/* string to array conversion */
+	/**
+	 * string to array conversion 
+	 * @param s	string to encode
+	 * @param _options	the map for the options
+	 * @return the s2a
+	 */
 	public static Long[] getS2a(String s, Map<String, String> _options) {
 		/* determine options */
 		// String[] options={"8","8","true"};
@@ -79,8 +110,12 @@ public final class UI32Common {
 		a = list.toArray(a);
 		return a;
 	}
-
-	/* bitwise rotate 32-bit number to the left */
+	/**
+	 * bitwise rotate 32-bit number to the left
+	 * @param num a 32-bit number
+	 * @param cnt the count of the number
+	 * @return the to the left rotated 32-bit number
+	 */
 	public static long getUi32Rol(long num, long cnt) {
 
 		long sResult1 = 0;
@@ -103,15 +138,25 @@ public final class UI32Common {
 		return sResult;
 	}
 
-	/* safely add two integers (with wrapping at 2^32) */
+	/**
+	 * safely add two integers (with wrapping at 2^32) 
+	 * @param x the first integer
+	 * @param y the second integer to add
+	 * @return the safely added result with wrapping at 2^32
+	 * */
 	public static long getUi32Add(long x, long y) {
 		long lsw = (x & 0xFFFF) + (y & 0xFFFF);
 		long msw = (x >> 16) + (y >> 16) + (lsw >> 16);
 		long sResult = ((int) msw << 16) | ((int) lsw & 0xFFFF);
 		return sResult;
 	}
-
-	/* calculate the SHA-1 of an array of big-endian words, and a bit length */
+	
+	/**
+	 * calculate the SHA-1 of an array of big-endian words, and a bit length
+	 * @param x the array of big-endian words
+	 * @param y the bit length
+	 * @return the SHA-1 result of the calculation
+	 * */
 	public static long[] getSha1Core(Long[] x, int len) {
 		Long[] tab= {};
 		if((len >> 5) >= x.length) {
@@ -194,10 +239,15 @@ public final class UI32Common {
 		return values;
 	}
 
-	/*
+	/**
 	 * perform the appropriate triplet combination function for the current
 	 * iteration
-	 */
+	 * @param t the current UI32
+	 * @param b the first element of the triplet to combine
+	 * @param c the second element of the triplet to combine
+	 * @param d the third element of the triplet to combine
+	 * @return the appropriate triplet combination function for the current
+	 * */
 	public static final long getSha1Ft(long t, long b, long c, long d) {
 		if (t < 20)
 			return (b & c) | ((~b) & d);
@@ -207,13 +257,21 @@ public final class UI32Common {
 			return (b & c) | (b & d) | (c & d);
 		return b ^ c ^ d;
 	}
-
-	/* determine the appropriate additive constant for the current iteration */
+	
+	/**
+	 * determine the appropriate additive constant for the current iteration
+	 * @param t the current to determine
+	 * @return the appropriate additive constant for the current iteration
+	 * */
 	public static final long getSha1Kt(long t) {
 		return (t < 20) ? 1518500249 : (t < 40) ? 1859775393 : (t < 60) ? -1894007588 : -899497514;
 	}
 
-	/* array to string conversion */
+	/**
+	 * array to string conversion
+	 * @param t the current to determine
+	 * @return the appropriate additive constant for the current iteration
+	 * */
 	public static String getA2s(long[] a, Map<String, String> _options) {
 		/* determine options */
 

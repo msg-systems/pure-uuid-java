@@ -1,19 +1,48 @@
+/*******************************************************************************
+ * *
+ * **  Design and Development by msg Applied Technology Research
+ * **  Copyright (c) 2019-2020 msg systems ag (http://www.msg-systems.com/)
+ * **  All Rights Reserved.
+ * ** 
+ * **  Permission is hereby granted, free of charge, to any person obtaining
+ * **  a copy of this software and associated documentation files (the
+ * **  "Software"), to deal in the Software without restriction, including
+ * **  without limitation the rights to use, copy, modify, merge, publish,
+ * **  distribute, sublicense, and/or sell copies of the Software, and to
+ * **  permit persons to whom the Software is furnished to do so, subject to
+ * **  the following conditions:
+ * **
+ * **  The above copyright notice and this permission notice shall be included
+ * **  in all copies or substantial portions of the Software.
+ * **
+ * **  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * **  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * **  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * **  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * **  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * **  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * *
+ ******************************************************************************/
 package com.thinkenterprise.uuid.helpers;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * ParseUUID helps to parse UUID from Text. 
+ * MD5 Encoder 
  *
- * @author Michael Schaefer
+ * @author Michael Schäfer
  * @author Ahmed Amedlous
- * @author Dr. Edgar Mueller
+ * @author Dr. Edgar Müller
  */
 public class Md5 {
 
-
-	/*  calculate the MD5 of an octet string  */
+	/**
+	 *  calculate the MD5 of an octet string 
+	 * @param s the octet string to calculate
+	 * @return the result string for the md5
+	 */
 	public static String md5(String s) {
 
 		Map<String, String> options=new HashMap<>();
@@ -29,8 +58,12 @@ public class Md5 {
 		return sResult;
 	}
 
-	/*  calculate the MD5 of an array of little-endian words, and a bit length  */
-
+	/**  
+	 * calculate the MD5 of an array of little-endian words, and a bit length
+	 * @param xx array of little-endian words
+	 * @param len the bit length
+	 * @return the result MD5 
+	 */
 	private static long[] getMd5Core(Long[]xx, int len) {
 
 
@@ -148,8 +181,16 @@ public class Md5 {
 	}
 
 
-
-	/*  basic operations the algorithm uses  */
+	/**  
+	 * basic operations the algorithm uses
+	 * @param q
+	 * @param a
+	 * @param b
+	 * @param x
+	 * @param s
+	 * @param t
+	 * @return the result MD5Mmn 
+	 */
 	private static long getMd5Mmn (long q,long a,long b,long x,long s,long t) {
 		long add32Arg1=UI32Common.getUi32Add(a, q);
 		long add32Arg2= UI32Common.getUi32Add(x, t);
@@ -168,7 +209,7 @@ public class Md5 {
 	 * @param x
 	 * @param s
 	 * @param t
-	 * @return
+	 * @return Md5FF
 	 */
 	private static long getMd5FF (long a,long b,long c,long d,long x,long s,long t) {
 
@@ -184,7 +225,7 @@ public class Md5 {
 	 * @param x
 	 * @param s
 	 * @param t
-	 * @return
+	 * @return Md5GG
 	 */
 	private static long getMd5GG (long a, long b,long c,long d, long x,long s,long t) {
 		return getMd5Mmn((b & d) | (c & (~d)), a, b, x, s, t);
@@ -199,7 +240,7 @@ public class Md5 {
 	 * @param x
 	 * @param s
 	 * @param t
-	 * @return
+	 * @return md5HH
 	 */
 	private static long getMd5HH (long a,long b,long c,long d,long x, long s,long t) {
 		return getMd5Mmn(b ^ c ^ d, a, b, x, s, t);
@@ -213,7 +254,7 @@ public class Md5 {
 	 * @param x
 	 * @param s
 	 * @param t
-	 * @return
+	 * @return md5II
 	 */
 	private static long  getMd5II (long a,long b,long c,long d,long  x, long s,long t) {
 		return getMd5Mmn(c ^ (b | (~d)), a, b, x, s, t);

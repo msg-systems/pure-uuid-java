@@ -1,13 +1,39 @@
+/*******************************************************************************
+ * *
+ * **  Design and Development by msg Applied Technology Research
+ * **  Copyright (c) 2019-2020 msg systems ag (http://www.msg-systems.com/)
+ * **  All Rights Reserved.
+ * ** 
+ * **  Permission is hereby granted, free of charge, to any person obtaining
+ * **  a copy of this software and associated documentation files (the
+ * **  "Software"), to deal in the Software without restriction, including
+ * **  without limitation the rights to use, copy, modify, merge, publish,
+ * **  distribute, sublicense, and/or sell copies of the Software, and to
+ * **  permit persons to whom the Software is furnished to do so, subject to
+ * **  the following conditions:
+ * **
+ * **  The above copyright notice and this permission notice shall be included
+ * **  in all copies or substantial portions of the Software.
+ * **
+ * **  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * **  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * **  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * **  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * **  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * **  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * *
+ ******************************************************************************/
 package com.thinkenterprise.uuid.helpers;
 
 import com.thinkenterprise.uuid.domain.GlobaleConstants;
 
 /**
- * ParseUUID helps to parse UUID from Text. 
+ * UI64Common contain common UI64 functionality. 
  *
- * @author Michael Schaefer
+ * @author Michael Schäfer
  * @author Ahmed Amedlous
- * @author Dr. Edgar Mueller
+ * @author Dr. Edgar Müller
  */
 public final class UI64Common {
 
@@ -15,15 +41,19 @@ public final class UI64Common {
 	 * 
 	 * convert between individual digits and the UI64 representation
 	 * @param tab
-	 * @return
+	 * @return the UI64 representation
 	 */
 	public static final long[] getUi64D2i(long tab[]) {
 
 		return new long[] {tab[7],tab[6],tab[5],tab[4],tab[3],tab[2],tab[1],tab[0]};
 	}
 
-
-	/*  multiply number (n) to UI64 (x) and return overflow/carry as number  */
+	/**
+	 * multiply number (n) to UI64 (x) and return overflow/carry as number
+	 * @param x	input UI64
+	 * @param n multiply number
+	 * @return the overflow/carry as number
+	 */
 	public static long getUi64Muln(long[] x, long n) {
 		long carry = 0;
 		for (int i = 0; i < GlobaleConstants.UI64_DIGITS; i++) {
@@ -34,12 +64,10 @@ public final class UI64Common {
 		return carry;
 	}
 
-	/*  add UI64 (y) to UI64 (x) and return overflow/carry as number  
-    /**
-	 * 
-	 * @param x
-	 * @param y
-	 * @return
+	/**  add UI64 (y) to UI64 (x) and return overflow/carry as number  
+	 * @param x the first UI64 
+	 * @param y the second UI64 to add
+	 * @return overflow/carry as number
 	 */
 	public static int getUi64Add(long[] x,long[] y) {
 		int carry = 0;
@@ -51,6 +79,12 @@ public final class UI64Common {
 		}
 		return carry;
 	}
+	
+	/**  add UI64 (y) to UI64 (x) and return overflow/carry as number  
+	 * @param x the first UI64 
+	 * @param y the second UI64 to add
+	 * @return overflow/carry as number
+	 */
 	public static int getUi64Add_2(long[] x,long[] y) {
 		int carry = 0;
 
@@ -62,8 +96,13 @@ public final class UI64Common {
 		return carry;
 	}
 
-	/*  convert between UI64 representation and number  */
-	/** Diese Methode gibt long als Wert (471779603359996160) manchmal rÃ¼ck**/
+	/**
+	 * Convertion between UI 64 representation and number
+	 * Diese Methode gibt long als Wert (471779603359996160) manchmal rück
+	 * 
+	 * @param x the UI64 to convert 
+	 * @return convertion between UI 64 representation and number
+	 **/
 	public static long  getUi64I2n(long x[]) {
 		long n = 0;
 		for (long i = GlobaleConstants.UI64_DIGITS - 1; i >= 0; i--) {
@@ -74,8 +113,13 @@ public final class UI64Common {
 	}
 
 
-
-	/*  rotate right UI64 (x) by a "s" bits and return overflow/carry as number  */
+	/**
+	 * rotate right UI64 (x) by a "s" bits and return overflow/carry as number
+	 * 
+	 * @param x the UI64 to rotate 
+	 * @param s a int 
+	 * @return overflow/carry as number
+	 */
 	private static long getUi64Rorn(long []x, int s) {
 		long[] ov =UI64.getUi64Zero(GlobaleConstants.TAB_0);
 		if ((s % GlobaleConstants.UI64_DIGIT_BITS) != 0)
@@ -86,7 +130,7 @@ public final class UI64Common {
 				ov[(int) (j + 1)] = ov[(int) j];
 			ov[0] = x[0];
 			int m=0;
-			// ?? zu prÃ¼fen Fall Fehler
+			// ?? zu prüfen Fall Fehler
 
 			for ( m=0 ; m < GlobaleConstants.UI64_DIGITS - 1; m++) {
 				x[m] = x[m + 1];
@@ -95,12 +139,13 @@ public final class UI64Common {
 		}
 		return getUi64I2n(ov);
 	}
+	
 	/**
-	 * Die Methode gibt die generierende Liste UUID rÃ¼ck.
+	 * Die Methode gibt die generierende Liste UUID rück.
 	 * store the 60 LSB of the time in the UUID  
 	 * @param converTime
 	 * @param n
-	 * @return
+	 * @return the generating uuid list
 	 */
 	public static long[] getStoreLSBinUUID(long converTime[],int n) {
 		long ov=0;
@@ -126,8 +171,13 @@ public final class UI64Common {
 		return uuid;
 	}
 
-	/*  multiply UI64 (y) to UI64 (x) and return overflow/carry as UI64  */
-	public static void  getUi64Mul(long []x, long y []) {
+	/**
+	 * multiply UI64 (y) to UI64 (x) and return overflow/carry as UI64 
+	 * @param x a UI64
+	 * @param y the UI64 to multiply
+	 * @return overflow/carry as UI64 
+	 */
+		public static void  getUi64Mul(long []x, long y []) {
 
 		int i, j;
 
@@ -164,8 +214,12 @@ public final class UI64Common {
 	}
 
 
-	/*  rotate right UI64 (x) by a "s" bits and return overflow/carry as number  */
-
+		/**
+		 * rotate right UI64 (x) by a "s" bits and return overflow/carry as number
+		 * @param x a UI64
+		 * @param s a int
+		 * @return overflow/carry as UI64 
+		 */
 
 	public static void getUi64Ror(long[] x,long s) throws Exception {
 
@@ -203,29 +257,48 @@ public final class UI64Common {
 	}
 
 
-
-	/*  XOR UI64 (y) onto UI64 (x) and return x  */
+	/**
+	 * XOR UI64 (y) onto UI64 (x) and return x
+	 * @param x a UI64
+	 * @param y a UI64
+	 * @return x XOR y
+	 */
 	public static void getUi64Xor(long []x,long [] y) {
 		for (int i = 0; i < GlobaleConstants.UI64_DIGITS; i++)
 			x[i] ^= y[i];
 
 	}
-
-	/*  AND operation: UI64 (x) &= UI64 (y)  */
+	
+	/**
+	 * AND operation: UI64 (x) &= UI64 (y)
+	 * @param x a UI64
+	 * @param y a UI64
+	 * @return x AND y
+	 */
 	public static long [] getUi64And(long x[], long y[]) {
 		for (int i = 0; i < GlobaleConstants.UI64_DIGITS; i++)
 			x[i] &= y[i];
 		return x;
 	}
-
-	/*  OR operation: UI64 (x) |= UI64 (y)  */
+	
+	/**
+	 * OR operation: UI64 (x) |= UI64 (y)
+	 * @param x a UI64
+	 * @param y a UI64
+	 * @return x OR y
+	 */
 	public static int[] getUi64Or(int []x,int[] y) {
 		for (int i = 0; i < GlobaleConstants.UI64_DIGITS; i++)
 			x[i] |= y[i];
 		return x;
 	}
 
-	/*  rotate left UI64 (x) by a "s" bits and return overflow/carry as UI64  */
+	/**
+	 * rotate left UI64 (x) by a "s" bits and return overflow/carry as UI64
+	 * @param x the left UI64
+	 * @param s 
+	 * @return overflow/carry as UI64
+	 */
 	public static void getUi64Rol(long x[], long s) throws Exception {
 		/*  sanity check shifting  */
 		if (s > (GlobaleConstants.UI64_DIGITS * GlobaleConstants.UI64_DIGIT_BITS))

@@ -2,11 +2,11 @@ package com.thinkenterprise.uuid.domain;
 
 
 /**
- * GlobaleConstants providing constants 
+ * Global Constant
  *
- * @author Michael Schäfer
+ * @author Michael Schaefer
  * @author Ahmed Amedlous
- * @author Dr. Edgar Müller
+ * @author Dr. Edgar Mueller
  */
 
 public final class GlobaleConstants {
@@ -38,7 +38,7 @@ public final class GlobaleConstants {
 	public static final String OBIGENDIAN="obigendian";
 	public static final String IBIGENDIAN="ibigendian";
 
-
+ 
 	public static long[] Z85_DECODER = {
 			0x00, 0x44, 0x00, 0x54, 0x53, 0x52, 0x48, 0x00,
 			0x4B, 0x4C, 0x46, 0x41, 0x00, 0x3F, 0x3E, 0x45,

@@ -3,9 +3,9 @@ package com.thinkenterprise.uuid.domain;
 /**
  * Enum propose List of ns URL. 
  *
- * @author Michael Schäfer
+ * @author Michael Schaefer
  * @author Ahmed Amedlous
- * @author Dr. Edgar Müller
+ * @author Dr. Edgar Mueller
  * 
  */
 public enum NsUrl {

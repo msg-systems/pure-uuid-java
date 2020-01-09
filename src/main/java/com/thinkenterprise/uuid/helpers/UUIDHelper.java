@@ -6,11 +6,11 @@ import com.thinkenterprise.uuid.domain.GlobaleConstants;
 import com.thinkenterprise.uuid.domain.UUIDDto;
 
 /**
- * Helper to create UUID Table. 
+ * ParseUUID helps to parse UUID from Text. 
  *
- * @author Michael Schäfer
+ * @author Michael Schaefer
  * @author Ahmed Amedlous
- * @author Dr. Edgar Müller
+ * @author Dr. Edgar Mueller
  */
 public class UUIDHelper {
 	

@@ -3,11 +3,11 @@ package com.thinkenterprise.uuid.helpers;
 import com.thinkenterprise.uuid.domain.TypeFormat;
 
 /**
- * A2HS helper to format UUID into text
+ * ParseUUID helps to parse UUID from Text. 
  *
- * @author Michael Schäfer
+ * @author Michael Schaefer
  * @author Ahmed Amedlous
- * @author Dr. Edgar Müller
+ * @author Dr. Edgar Mueller
  */
 public class A2HS {
 	
@@ -28,7 +28,7 @@ public class A2HS {
 	            		 sbf.append(arr[i]);  
 	            	 }
 				}
-	            
+	             
 	            str =sbf.toString();
 	        }
 	        else if (type==TypeFormat.VIDE.getTypeFormat()|| type ==TypeFormat.STD.getTypeFormat()) {

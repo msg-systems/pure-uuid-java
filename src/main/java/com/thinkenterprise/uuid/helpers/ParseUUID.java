@@ -11,9 +11,9 @@ import com.thinkenterprise.uuid.domain.GlobaleConstants;
 /**
  * ParseUUID helps to parse UUID from Text. 
  *
- * @author Michael Schäfer
+ * @author Michael Schaefer
  * @author Ahmed Amedlous
- * @author Dr. Edgar Müller
+ * @author Dr. Edgar Mueller
  */
 public final class ParseUUID {
 

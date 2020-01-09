@@ -1,13 +1,12 @@
 package com.thinkenterprise.uuid.helpers;
 
 import org.apache.commons.lang.math.NumberUtils;
-
 /**
- * Common Util  
+ * ParseUUID helps to parse UUID from Text. 
  *
- * @author Michael Schäfer
+ * @author Michael Schaefer
  * @author Ahmed Amedlous
- * @author Dr. Edgar Müller
+ * @author Dr. Edgar Mueller
  */
 public class UtilCommon {
 	

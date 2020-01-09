@@ -3,11 +3,11 @@ package com.thinkenterprise.uuid.helpers;
 import com.thinkenterprise.uuid.domain.GlobaleConstants;
 
 /**
- * Encoder 
+ * ParseUUID helps to parse UUID from Text. 
  *
- * @author Michael Schäfer
+ * @author Michael Schaefer
  * @author Ahmed Amedlous
- * @author Dr. Edgar Müller
+ * @author Dr. Edgar Mueller
  */
 public class Encode {
 	

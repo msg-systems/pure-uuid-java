@@ -12,8 +12,9 @@
 		</dependency>
 	</dependencies> 
 
+4. Change the project Directory structure for maven src/main/java etc.
 
-# Review Open Points 
+# Review Open Issues 
 
 1. Project Description 
 2. License Header is missing

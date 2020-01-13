@@ -1,11 +1,13 @@
 # About
-Project is the **Java** implementation of the **JavaScript** GraphQL IO reference implementation. 
-The documentation of the reference implementation can be found at [Project Github] (https://www.google.com). 
+pure-uuid-java is the **Java** implementation of the **JavaScript** pure-uuid reference implementation. 
+The documentation of the reference implementation can be found at [Project Github] (https://github.com/rse/pure-uuid). 
 
 # Installation
 ## Maven 
 
-mvn clean install 
+```
+mvn clean install
+```
 
 ## Gradle 
 

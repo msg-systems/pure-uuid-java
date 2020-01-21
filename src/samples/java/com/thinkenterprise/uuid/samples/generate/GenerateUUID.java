@@ -25,24 +25,24 @@ public class GenerateUUID {
 	 * code from class com.thinkenterprise.gts.tracking.GtsScope
 	 */
 	private String generateUUID(int version, NsUrl urlFormat, String url, String data) {
-		UUIDDto uUUIDOptions = new UUIDDto();
-		uUUIDOptions.setData(url);
-		uUUIDOptions.setNsUrl(urlFormat);
-		uUUIDOptions.setVersion(version);
-		uUUIDOptions.setTypeFormatNs(TypeFormat.STD);
-
 		try {
-			long[] uuid = UUIDHelper.generateUUIDLongArray(uUUIDOptions, uUUIDOptions.getVersion());
-			String uuidFormat = A2HS.format(uUUIDOptions.getTypeFormatNs().getTypeFormat(), uuid);
+			UUIDDto uuidDto = new UUIDDto();
+			uuidDto.setData(url);
+			uuidDto.setNsUrl(urlFormat);
+			uuidDto.setVersion(version);
+			uuidDto.setTypeFormatNs(TypeFormat.STD);
 
-			uUUIDOptions.setNs(uuid);
-			uUUIDOptions.setUuidFormat(uuidFormat);
-			uUUIDOptions.setData(data);
-			uUUIDOptions.setVersionSid(version);
-			uUUIDOptions.setTypeFormatSid(TypeFormat.STD);
+			long[] uuid = UUIDHelper.generateUUIDLongArray(uuidDto, uuidDto.getVersion());
+			String uuidFormat = A2HS.format(uuidDto.getTypeFormatNs().getTypeFormat(), uuid);
 
-			long[] sid = UUIDHelper.generateUUIDLongArray(uUUIDOptions, uUUIDOptions.getVersionSid());
-			return A2HS.format(uUUIDOptions.getTypeFormatSid().getTypeFormat(), sid);
+			uuidDto.setNs(uuid);
+			uuidDto.setUuidFormat(uuidFormat);
+			uuidDto.setData(data);
+			uuidDto.setVersionSid(version);
+			uuidDto.setTypeFormatSid(TypeFormat.STD);
+
+			long[] sid = UUIDHelper.generateUUIDLongArray(uuidDto, uuidDto.getVersionSid());
+			return A2HS.format(uuidDto.getTypeFormatSid().getTypeFormat(), sid);
 
 		} catch (Exception e) {
 			return null;

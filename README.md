@@ -35,8 +35,29 @@ dependencies {
 
 
 # Sample 
-FIXME
 
+Working with UUIDDto
+
+``` java
+		UUIDDto uuidDto = new UUIDDto();
+		uuidDto.setVersion(4);
+		uuidDto.setVersionSid(15);
+		uuidDto.setData("http://engelschall.com/ns/graphql-query");
+		uuidDto.setNs(new long[] {});
+		uuidDto.setNsUrl(NsUrl.NS_X500);
+```
+
+Working with UUIDHelper
+
+``` java
+			long[] uuid = UUIDHelper.generateUUIDLongArray(uuidDto, uuidDto.getVersion());
+```
+
+Working with A2HS
+
+``` java
+			String uuidFormat = A2HS.format(uuidDto.getTypeFormatNs().getTypeFormat(), uuid);
+```
 
 
 # License 

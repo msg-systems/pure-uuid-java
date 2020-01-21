@@ -18,6 +18,12 @@
 
 1. Project Description 
 2. Tests 
+```
+-> done! (tku)
+```
 3. Short Sample 
+```
+-> done! (tku)
+```
 4. Change Legacy Library 
 

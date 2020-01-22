@@ -1,7 +1,10 @@
-package com.thinkenterprise.uuid.domain;
+package com.graphqlio.uuid.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import com.graphqlio.uuid.domain.NsUrl;
+import com.graphqlio.uuid.domain.UUIDDto;
 
 public class TestUUIDDto {
 

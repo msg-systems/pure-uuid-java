@@ -24,7 +24,7 @@
  * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * *
  ******************************************************************************/
-package com.thinkenterprise.uuid.helpers;
+package com.graphqlio.uuid.helpers;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang.math.NumberUtils;
 
-import com.thinkenterprise.uuid.domain.GlobaleConstants;
+import com.graphqlio.uuid.domain.GlobaleConstants;
 
 /**
  * ParseUUID helps to parse UUID from Text. 

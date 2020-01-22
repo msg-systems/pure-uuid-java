@@ -24,9 +24,9 @@
  * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * *
  ******************************************************************************/
-package com.thinkenterprise.uuid.helpers;
+package com.graphqlio.uuid.helpers;
 
-import com.thinkenterprise.uuid.domain.TypeFormat;
+import com.graphqlio.uuid.domain.TypeFormat;
 
 /**
  * A2HS helper to format UUID into text

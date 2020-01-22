@@ -24,7 +24,7 @@
  * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * *
  ******************************************************************************/
-package com.thinkenterprise.uuid.domain;
+package com.graphqlio.uuid.domain;
 
 /**
  * UUIDDto model

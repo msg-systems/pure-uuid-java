@@ -1,13 +1,15 @@
-package com.thinkenterprise.uuid.helpers;
+package com.graphqlio.uuid.helpers;
 
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.thinkenterprise.uuid.domain.NsUrl;
-import com.thinkenterprise.uuid.domain.TypeFormat;
-import com.thinkenterprise.uuid.domain.UUIDDto;
+import com.graphqlio.uuid.domain.NsUrl;
+import com.graphqlio.uuid.domain.TypeFormat;
+import com.graphqlio.uuid.domain.UUIDDto;
+import com.graphqlio.uuid.helpers.A2HS;
+import com.graphqlio.uuid.helpers.UUIDHelper;
 
 public class TestA2HS {
 

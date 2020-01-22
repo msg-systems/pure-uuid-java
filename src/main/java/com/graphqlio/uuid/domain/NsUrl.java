@@ -24,38 +24,36 @@
  * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * *
  ******************************************************************************/
-package com.thinkenterprise.uuid.helpers;
-
-import java.util.HashMap;
-import java.util.Map;
+package com.graphqlio.uuid.domain;
 
 /**
- * SHA1 helps to create random Number from Time((PRNG)). 
+ * Enum propose List of ns URL. 
  *
  * @author Michael Schüfer
  * @author Ahmed Amedlous
  * @author Dr. Edgar Müller
  */
-public final class SHA1 {
+public enum NsUrl {
+	NIL("nil"),
+	NS_DNS("ns:DNS"),
+	NS_URL("ns:URL"),
+	NS_OID("ns:OID"),
+	NS_X500("ns:X500");
 
-
-	/**
-	 * Returns the SHA1 encoded key identifier 
-	 * @param s	string to encode
-	 * @return the SHA1
-	 */
-	public static final String getSHA1(String s) {
-
-		Map<String, String> options=new HashMap<>();
-		options.put("ibits", "8");
-		options.put("obits", "32");
-		options.put("obigendian", "true");
-
-		Map<String, String> _options=new HashMap<>();
-		_options.put("ibits", "32");
-		_options.put("ibigendian", "true");
-
-		return UI32Common.getA2s(UI32Common.getSha1Core(UI32Common.getS2a(s, options), s.length()*8), _options);
+	private final String nsUrl;
+	
+	/**}
+	* Class constructor.
+	*/
+	private NsUrl(String nsUrl) {
+		this.nsUrl = nsUrl;
 	}
+	
+	/**
+	 * @return the nsUrl
+	 */
+	public String getNsUrl() {
+		return nsUrl;
+	}	
 
 }

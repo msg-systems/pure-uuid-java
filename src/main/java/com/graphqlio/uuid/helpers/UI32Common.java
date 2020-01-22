@@ -24,14 +24,14 @@
  * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * *
  ******************************************************************************/
-package com.thinkenterprise.uuid.helpers;
+package com.graphqlio.uuid.helpers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.thinkenterprise.uuid.domain.GlobaleConstants;
+import com.graphqlio.uuid.domain.GlobaleConstants;
 
 
 /**

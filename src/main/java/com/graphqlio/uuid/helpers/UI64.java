@@ -24,50 +24,49 @@
  * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * *
  ******************************************************************************/
-package com.thinkenterprise.uuid.helpers;
+package com.graphqlio.uuid.helpers;
 
-import com.thinkenterprise.uuid.domain.GlobaleConstants;
+import com.graphqlio.uuid.domain.GlobaleConstants;
+
 
 /**
- * Encoder 
+ *  UI64 helpers. 
  *
  * @author Michael Schüfer
  * @author Ahmed Amedlous
  * @author Dr. Edgar Müller
  */
-public class Encode {
-	
-	
+public final class UI64 {
+
+
 	/**
-	 * decodes data in the Base85 encoding scheme Z85
-	 * @param data
-	 * @param size
-	 * @return the result string from the Z85 encoder
-	 * @throws Exception 
+	 * Null handling
+	 * @param tab
+	 * @return UI64 for zero
 	 */
-	public static String  getZ85Encode (long [] data,int size) throws Exception {
-        if ((size % 4) != 0)
-            throw new Exception("z85_encode: invalid input length (multiple of 4 expected)");
-        String str = "";
-        long i = 0, value = 0;
-        while (i < size) {
-            value = (value * 256) + data[(int) i++];
-            if ((i % 4) == 0) {
-                int divisor = 85 * 85 * 85 * 85;
-                while (divisor >= 1) {
-                    int idx = (int) (Math.floor(value / divisor) % 85);
-                     
-                    // sometime idx kommt negative
-                    if(idx>0) {
-                    	 str += GlobaleConstants.Z85_ENCODER[idx];
-                    }
-                   
-                    divisor /= 85;
-                }
-                value = 0;
-             }
-        }
-        return str;
-    };
+	public static final long[] getUi64Zero(long tab[]) {
+
+		return UI64Common.getUi64D2i(tab);
+
+	}
+	/**
+	 * Convert long to UI64
+
+	 * @param tab 
+	 * @param n 
+	 * @return the converted UI64 from the long 
+	 */
+	public static final long[] getUi64N2i(long tab[],long n) {
+		long [] ui64 = getUi64Zero(tab);
+		for (int i = 0; i < GlobaleConstants.UI64_DIGITS; i++) {
+			ui64[i] = (long) Math.floor(n % GlobaleConstants.UI64_DIGIT_BASE);
+			n /= GlobaleConstants.UI64_DIGIT_BASE;
+		}
+		return ui64;
+
+
+	}
+
+
 
 }

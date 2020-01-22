@@ -1,10 +1,10 @@
-package com.thinkenterprise.uuid.samples.generate;
+package com.graphqlio.uuid.samples.generate;
 
-import com.thinkenterprise.uuid.domain.NsUrl;
-import com.thinkenterprise.uuid.domain.TypeFormat;
-import com.thinkenterprise.uuid.domain.UUIDDto;
-import com.thinkenterprise.uuid.helpers.A2HS;
-import com.thinkenterprise.uuid.helpers.UUIDHelper;
+import com.graphqlio.uuid.domain.NsUrl;
+import com.graphqlio.uuid.domain.TypeFormat;
+import com.graphqlio.uuid.domain.UUIDDto;
+import com.graphqlio.uuid.helpers.A2HS;
+import com.graphqlio.uuid.helpers.UUIDHelper;
 
 public class GenerateUUID {
 
@@ -22,7 +22,7 @@ public class GenerateUUID {
 	}
 
 	/*
-	 * code from class com.thinkenterprise.gts.tracking.GtsScope
+	 * code from class com.graphqlio.gts.tracking.GtsScope
 	 */
 	private String generateUUID(int version, NsUrl urlFormat, String url, String data) {
 		try {

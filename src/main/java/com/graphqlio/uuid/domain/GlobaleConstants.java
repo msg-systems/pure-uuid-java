@@ -24,7 +24,7 @@
  * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * *
  ******************************************************************************/
-package com.thinkenterprise.uuid.domain;
+package com.graphqlio.uuid.domain;
 
 
 /**
@@ -85,7 +85,7 @@ public final class GlobaleConstants {
 
     public final static String[] Z85_ENCODER ="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.-:+=^!/*?&<>()[]{}@%$#".split("");
 
-    public static final String SCAN_PACKAGE= "com.thinkenterprise.uuid";
+    public static final String SCAN_PACKAGE= "com.graphqlio.uuid";
     public static final String API="/uuid";
     public static final String API_GENERATE_UUID="generateUUID";
 

@@ -24,49 +24,37 @@
  * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * *
  ******************************************************************************/
-package com.thinkenterprise.uuid.helpers;
-
-import com.thinkenterprise.uuid.domain.GlobaleConstants;
+package com.graphqlio.uuid.domain;
 
 
 /**
- *  UI64 helpers. 
+ * Enum propose List of Tyle Format. 
  *
  * @author Michael Schüfer
  * @author Ahmed Amedlous
  * @author Dr. Edgar Müller
  */
-public final class UI64 {
+public enum TypeFormat {
 
+	VIDE("Nothing"),
+	Z85("z85"),
+	B16("b16"),
+	STD("std");
 
+	private final String typeFormat;
+	
 	/**
-	 * Null handling
-	 * @param tab
-	 * @return UI64 for zero
-	 */
-	public static final long[] getUi64Zero(long tab[]) {
-
-		return UI64Common.getUi64D2i(tab);
-
+	* Class constructor.
+	*/
+	private TypeFormat(String typeFormat) {
+		this.typeFormat = typeFormat;
 	}
+	
 	/**
-	 * Convert long to UI64
-
-	 * @param tab 
-	 * @param n 
-	 * @return the converted UI64 from the long 
+	 * @return the nsUrl
 	 */
-	public static final long[] getUi64N2i(long tab[],long n) {
-		long [] ui64 = getUi64Zero(tab);
-		for (int i = 0; i < GlobaleConstants.UI64_DIGITS; i++) {
-			ui64[i] = (long) Math.floor(n % GlobaleConstants.UI64_DIGIT_BASE);
-			n /= GlobaleConstants.UI64_DIGIT_BASE;
-		}
-		return ui64;
-
-
-	}
-
-
+	public String getTypeFormat() {
+		return typeFormat;
+	}	
 
 }

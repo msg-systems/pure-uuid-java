@@ -18,7 +18,7 @@ FIXME
 ## Maven 
 ```
 <dependency>
-	<groupId>com.thinkenterprise</groupId>
+	<groupId>com.graphqlio</groupId>
 	<artifactId>pure-uuid-java</artifactId>
 	<version>0.0.9</version>
 </dependency>
@@ -29,7 +29,7 @@ FIXME
 
 ```
 dependencies {
-  compile 'com.thinkenterprise:pure-uuid-java:0.0.9'
+  compile 'com.graphqlio:pure-uuid-java:0.0.9'
 }
 ```
 

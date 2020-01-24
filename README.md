@@ -9,10 +9,6 @@ The documentation of the reference implementation can be found at [Project Githu
 mvn clean install
 ```
 
-## Gradle 
-
-FIXME
-
 # Usage 
 
 ## Maven 
@@ -50,13 +46,13 @@ Working with UUIDDto
 Working with UUIDHelper
 
 ``` java
-			long[] uuid = UUIDHelper.generateUUIDLongArray(uuidDto, uuidDto.getVersion());
+		long[] uuid = UUIDHelper.generateUUIDLongArray(uuidDto, uuidDto.getVersion());
 ```
 
 Working with A2HS
 
 ``` java
-			String uuidFormat = A2HS.format(uuidDto.getTypeFormatNs().getTypeFormat(), uuid);
+		String uuidFormat = A2HS.format(uuidDto.getTypeFormatNs().getTypeFormat(), uuid);
 ```
 
 

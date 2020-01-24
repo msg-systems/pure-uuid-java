@@ -24,18 +24,13 @@
  * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * *
  ******************************************************************************/
-package com.graphqlio.uuid.helpers;
-
-import java.util.Arrays;
+package com.graphqlio.uuid.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.graphqlio.uuid.domain.NsUrl;
-import com.graphqlio.uuid.domain.TypeFormat;
 import com.graphqlio.uuid.domain.UUIDDto;
-import com.graphqlio.uuid.helpers.A2HS;
-import com.graphqlio.uuid.helpers.UUIDHelper;
 
 /**
  * Class testing pure-uuid
@@ -44,27 +39,31 @@ import com.graphqlio.uuid.helpers.UUIDHelper;
  * @author Torsten Kühnert
  */
 
-public class TestA2HS {
+public class UUIDDtoTest {
 
 	@Test
-	public void testMethodFormat() throws Exception {
+	public void testSimpleValues() {
 		UUIDDto uuidDto = new UUIDDto();
-		uuidDto.setData("http://engelschall.com/ns/graphql-query");
-		uuidDto.setNsUrl(NsUrl.NS_URL);
-		uuidDto.setVersion(5);
-		uuidDto.setTypeFormatNs(TypeFormat.STD);
+		uuidDto.setVersion(6);
 
-		long[] uuidLongArray = UUIDHelper.generateUUIDLongArray(uuidDto, uuidDto.getVersion());
-		System.out.println("uuidLongArray = " + Arrays.toString(uuidLongArray));
+		Assertions.assertTrue(uuidDto.getVersion() == 6);
+		Assertions.assertTrue(uuidDto.getVersionSid() == 0);
+		Assertions.assertTrue(uuidDto.getNs() == null);
+		Assertions.assertTrue(uuidDto.getNsUrl() == null);
+	}
 
-		Assertions.assertTrue(uuidLongArray.length == 16);
-		Assertions.assertTrue(uuidLongArray[1] == 139);
-		Assertions.assertTrue(uuidLongArray[12] == 72);
+	@Test
+	public void testOtherValues() {
+		UUIDDto uuidDto = new UUIDDto();
+		uuidDto.setVersion(4);
+		uuidDto.setVersionSid(15);
+		uuidDto.setNs(new long[] {});
+		uuidDto.setNsUrl(NsUrl.NS_X500);
 
-		String uuidFormat = A2HS.format(uuidDto.getTypeFormatNs().getTypeFormat(), uuidLongArray);
-		System.out.println("uuidFormat = " + uuidFormat);
-
-		Assertions.assertTrue("148bdfa9-7596-5319-a197-ead64880df40".equals(uuidFormat));
+		Assertions.assertTrue(uuidDto.getVersion() == 4);
+		Assertions.assertTrue(uuidDto.getVersionSid() == 15);
+		Assertions.assertTrue(uuidDto.getNs() != null);
+		Assertions.assertTrue(uuidDto.getNsUrl() != null);
 	}
 
 }

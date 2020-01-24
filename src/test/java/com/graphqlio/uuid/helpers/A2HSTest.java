@@ -24,13 +24,18 @@
  * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * *
  ******************************************************************************/
-package com.graphqlio.uuid.domain;
+package com.graphqlio.uuid.helpers;
+
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.graphqlio.uuid.domain.NsUrl;
+import com.graphqlio.uuid.domain.TypeFormat;
 import com.graphqlio.uuid.domain.UUIDDto;
+import com.graphqlio.uuid.helpers.A2HS;
+import com.graphqlio.uuid.helpers.UUIDHelper;
 
 /**
  * Class testing pure-uuid
@@ -39,31 +44,27 @@ import com.graphqlio.uuid.domain.UUIDDto;
  * @author Torsten Kühnert
  */
 
-public class TestUUIDDto {
+public class A2HSTest {
 
 	@Test
-	public void testSimpleValues() {
+	public void testMethodFormat() throws Exception {
 		UUIDDto uuidDto = new UUIDDto();
-		uuidDto.setVersion(6);
+		uuidDto.setData("http://engelschall.com/ns/graphql-query");
+		uuidDto.setNsUrl(NsUrl.NS_URL);
+		uuidDto.setVersion(5);
+		uuidDto.setTypeFormatNs(TypeFormat.STD);
 
-		Assertions.assertTrue(uuidDto.getVersion() == 6);
-		Assertions.assertTrue(uuidDto.getVersionSid() == 0);
-		Assertions.assertTrue(uuidDto.getNs() == null);
-		Assertions.assertTrue(uuidDto.getNsUrl() == null);
-	}
+		long[] uuidLongArray = UUIDHelper.generateUUIDLongArray(uuidDto, uuidDto.getVersion());
+		System.out.println("uuidLongArray = " + Arrays.toString(uuidLongArray));
 
-	@Test
-	public void testOtherValues() {
-		UUIDDto uuidDto = new UUIDDto();
-		uuidDto.setVersion(4);
-		uuidDto.setVersionSid(15);
-		uuidDto.setNs(new long[] {});
-		uuidDto.setNsUrl(NsUrl.NS_X500);
+		Assertions.assertTrue(uuidLongArray.length == 16);
+		Assertions.assertTrue(uuidLongArray[1] == 139);
+		Assertions.assertTrue(uuidLongArray[12] == 72);
 
-		Assertions.assertTrue(uuidDto.getVersion() == 4);
-		Assertions.assertTrue(uuidDto.getVersionSid() == 15);
-		Assertions.assertTrue(uuidDto.getNs() != null);
-		Assertions.assertTrue(uuidDto.getNsUrl() != null);
+		String uuidFormat = A2HS.format(uuidDto.getTypeFormatNs().getTypeFormat(), uuidLongArray);
+		System.out.println("uuidFormat = " + uuidFormat);
+
+		Assertions.assertTrue("148bdfa9-7596-5319-a197-ead64880df40".equals(uuidFormat));
 	}
 
 }

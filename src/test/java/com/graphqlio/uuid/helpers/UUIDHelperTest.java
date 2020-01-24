@@ -42,7 +42,7 @@ import com.graphqlio.uuid.helpers.UUIDHelper;
  * @author Torsten Kühnert
  */
 
-public class TestUUIDHelper {
+public class UUIDHelperTest {
 
 	@Test
 	public void testWrongVersion() {

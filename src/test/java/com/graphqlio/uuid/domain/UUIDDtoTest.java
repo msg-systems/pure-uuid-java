@@ -29,9 +29,6 @@ package com.graphqlio.uuid.domain;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.graphqlio.uuid.domain.NsUrl;
-import com.graphqlio.uuid.domain.UUIDDto;
-
 /**
  * Class testing pure-uuid
  *
@@ -42,28 +39,33 @@ import com.graphqlio.uuid.domain.UUIDDto;
 public class UUIDDtoTest {
 
 	@Test
-	public void testSimpleValues() {
+	public void whenUUIDDtoIsCreatedThenOnlyIntFieldsAreSet() {
 		UUIDDto uuidDto = new UUIDDto();
-		uuidDto.setVersion(6);
 
-		Assertions.assertTrue(uuidDto.getVersion() == 6);
-		Assertions.assertTrue(uuidDto.getVersionSid() == 0);
-		Assertions.assertTrue(uuidDto.getNs() == null);
+		Assertions.assertTrue(uuidDto.getVersion() == 0);
 		Assertions.assertTrue(uuidDto.getNsUrl() == null);
+		Assertions.assertTrue(uuidDto.getUrl() == null);
+		Assertions.assertTrue(uuidDto.getUuidFormat() == null);
+		Assertions.assertTrue(uuidDto.getNs() == null);
+		Assertions.assertTrue(uuidDto.getVersionSid() == 0);
+		Assertions.assertTrue(uuidDto.getSidFormat() == null);
+		Assertions.assertTrue(uuidDto.getTypeFormatNs() == null);
+		Assertions.assertTrue(uuidDto.getTypeFormatSid() == null);
 	}
 
 	@Test
-	public void testOtherValues() {
+	public void whenUUIDDtoSettersAreUsedThenFieldsAreSetCorrect() {
 		UUIDDto uuidDto = new UUIDDto();
-		uuidDto.setVersion(4);
-		uuidDto.setVersionSid(15);
-		uuidDto.setNs(new long[] {});
+		uuidDto.setVersion(6);
+		uuidDto.setVersionSid(-15);
+		uuidDto.setNs(new long[] { 34L, 15L, 26262L });
 		uuidDto.setNsUrl(NsUrl.NS_X500);
 
-		Assertions.assertTrue(uuidDto.getVersion() == 4);
-		Assertions.assertTrue(uuidDto.getVersionSid() == 15);
+		Assertions.assertTrue(uuidDto.getVersion() == 6);
+		Assertions.assertTrue(uuidDto.getVersionSid() == -15);
 		Assertions.assertTrue(uuidDto.getNs() != null);
-		Assertions.assertTrue(uuidDto.getNsUrl() != null);
+		Assertions.assertTrue(uuidDto.getNs().length == 3);
+		Assertions.assertTrue(uuidDto.getNsUrl() == NsUrl.NS_X500);
 	}
 
 }

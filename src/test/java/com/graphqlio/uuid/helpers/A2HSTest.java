@@ -34,8 +34,6 @@ import org.junit.jupiter.api.Test;
 import com.graphqlio.uuid.domain.NsUrl;
 import com.graphqlio.uuid.domain.TypeFormat;
 import com.graphqlio.uuid.domain.UUIDDto;
-import com.graphqlio.uuid.helpers.A2HS;
-import com.graphqlio.uuid.helpers.UUIDHelper;
 
 /**
  * Class testing pure-uuid
@@ -47,7 +45,7 @@ import com.graphqlio.uuid.helpers.UUIDHelper;
 public class A2HSTest {
 
 	@Test
-	public void testMethodFormat() throws Exception {
+	public void whenA2HSFormatIsUsedThenUUIDIsCorrect() throws Exception {
 		UUIDDto uuidDto = new UUIDDto();
 		uuidDto.setData("http://engelschall.com/ns/graphql-query");
 		uuidDto.setNsUrl(NsUrl.NS_URL);

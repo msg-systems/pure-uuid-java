@@ -33,7 +33,6 @@ import org.junit.jupiter.api.Test;
 
 import com.graphqlio.uuid.domain.NsUrl;
 import com.graphqlio.uuid.domain.UUIDDto;
-import com.graphqlio.uuid.helpers.UUIDHelper;
 
 /**
  * Class testing pure-uuid
@@ -45,7 +44,7 @@ import com.graphqlio.uuid.helpers.UUIDHelper;
 public class UUIDHelperTest {
 
 	@Test
-	public void testWrongVersion() {
+	public void whenVersion6IsUsedThenExceptionIsThrown() {
 		UUIDDto uuidDto = new UUIDDto();
 		uuidDto.setVersion(6);
 
@@ -55,7 +54,7 @@ public class UUIDHelperTest {
 	}
 
 	@Test
-	public void testWithoutNsUrl() throws Exception {
+	public void whenNsUrlIsNotGivenThenNullPointerExceptionIsThrown() throws Exception {
 		UUIDDto uuidDto = new UUIDDto();
 		uuidDto.setVersion(5);
 
@@ -65,7 +64,7 @@ public class UUIDHelperTest {
 	}
 
 	@Test
-	public void WithNsUrl() throws Exception {
+	public void whenNsUrlIsGivenThenUUIDLongArrayIsCorrect() throws Exception {
 		UUIDDto uuidDto = new UUIDDto();
 		uuidDto.setVersion(5);
 		uuidDto.setNsUrl(NsUrl.NS_URL);

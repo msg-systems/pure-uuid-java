@@ -15,8 +15,8 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: Upload
-    - uses: actions/upload-artifact@v1
+    - name: Upload math result for job 2
+      uses: actions/upload-artifact@v1
       with:
-        name: pure-uuid-java-0.0.9.jar
-        path: /target
+        name: pure-uuid-java
+        path: target/pure-uuid-java-0.0.9.jar

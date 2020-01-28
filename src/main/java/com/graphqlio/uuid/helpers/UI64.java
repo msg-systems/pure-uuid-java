@@ -24,36 +24,49 @@
  * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * *
  ******************************************************************************/
-package com.thinkenterprise.uuid.domain;
+package com.graphqlio.uuid.helpers;
+
+import com.graphqlio.uuid.domain.GlobaleConstants;
+
 
 /**
- * Enum propose List of ns URL. 
+ *  UI64 helpers. 
  *
  * @author Michael Schüfer
  * @author Ahmed Amedlous
  * @author Dr. Edgar Müller
  */
-public enum NsUrl {
-	NIL("nil"),
-	NS_DNS("ns:DNS"),
-	NS_URL("ns:URL"),
-	NS_OID("ns:OID"),
-	NS_X500("ns:X500");
+public final class UI64 {
 
-	private final String nsUrl;
-	
-	/**}
-	* Class constructor.
-	*/
-	private NsUrl(String nsUrl) {
-		this.nsUrl = nsUrl;
-	}
-	
+
 	/**
-	 * @return the nsUrl
+	 * Null handling
+	 * @param tab
+	 * @return UI64 for zero
 	 */
-	public String getNsUrl() {
-		return nsUrl;
-	}	
+	public static final long[] getUi64Zero(long tab[]) {
+
+		return UI64Common.getUi64D2i(tab);
+
+	}
+	/**
+	 * Convert long to UI64
+
+	 * @param tab 
+	 * @param n 
+	 * @return the converted UI64 from the long 
+	 */
+	public static final long[] getUi64N2i(long tab[],long n) {
+		long [] ui64 = getUi64Zero(tab);
+		for (int i = 0; i < GlobaleConstants.UI64_DIGITS; i++) {
+			ui64[i] = (long) Math.floor(n % GlobaleConstants.UI64_DIGIT_BASE);
+			n /= GlobaleConstants.UI64_DIGIT_BASE;
+		}
+		return ui64;
+
+
+	}
+
+
 
 }

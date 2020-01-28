@@ -24,9 +24,9 @@
  * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * *
  ******************************************************************************/
-package com.thinkenterprise.uuid.helpers;
+package com.graphqlio.uuid.helpers;
 
-import com.thinkenterprise.uuid.domain.GlobaleConstants;
+import com.graphqlio.uuid.domain.GlobaleConstants;
 
 /**
  * UI64Common contain common UI64 functionality. 

@@ -9,16 +9,12 @@ The documentation of the reference implementation can be found at [Project Githu
 mvn clean install
 ```
 
-## Gradle 
-
-FIXME
-
 # Usage 
 
 ## Maven 
 ```
 <dependency>
-	<groupId>com.thinkenterprise</groupId>
+	<groupId>com.graphqlio</groupId>
 	<artifactId>pure-uuid-java</artifactId>
 	<version>0.0.9</version>
 </dependency>
@@ -29,14 +25,35 @@ FIXME
 
 ```
 dependencies {
-  compile 'com.thinkenterprise:pure-uuid-java:0.0.9'
+  compile 'com.graphqlio:pure-uuid-java:0.0.9'
 }
 ```
 
 
 # Sample 
-FIXME
 
+Working with UUIDDto
+
+``` java
+		UUIDDto uuidDto = new UUIDDto();
+		uuidDto.setVersion(4);
+		uuidDto.setVersionSid(15);
+		uuidDto.setData("http://engelschall.com/ns/graphql-query");
+		uuidDto.setNs(new long[] {});
+		uuidDto.setNsUrl(NsUrl.NS_X500);
+```
+
+Working with UUIDHelper
+
+``` java
+		long[] uuid = UUIDHelper.generateUUIDLongArray(uuidDto, uuidDto.getVersion());
+```
+
+Working with A2HS
+
+``` java
+		String uuidFormat = A2HS.format(uuidDto.getTypeFormatNs().getTypeFormat(), uuid);
+```
 
 
 # License 

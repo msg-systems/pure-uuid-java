@@ -24,38 +24,45 @@
  * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * *
  ******************************************************************************/
-package com.thinkenterprise.uuid.helpers;
+package com.graphqlio.uuid.helpers;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import com.graphqlio.uuid.domain.NsUrl;
+import com.graphqlio.uuid.domain.TypeFormat;
+import com.graphqlio.uuid.domain.UUIDDto;
 
 /**
- * SHA1 helps to create random Number from Time((PRNG)). 
+ * Class testing pure-uuid
  *
- * @author Michael Schüfer
- * @author Ahmed Amedlous
- * @author Dr. Edgar Müller
+ * @author Michael Schäfer
+ * @author Torsten Kühnert
  */
-public final class SHA1 {
 
+public class A2HSTest {
 
-	/**
-	 * Returns the SHA1 encoded key identifier 
-	 * @param s	string to encode
-	 * @return the SHA1
-	 */
-	public static final String getSHA1(String s) {
+	@Test
+	public void whenA2HSFormatIsUsedThenUUIDIsCorrect() throws Exception {
+		UUIDDto uuidDto = new UUIDDto();
+		uuidDto.setData("http://engelschall.com/ns/graphql-query");
+		uuidDto.setNsUrl(NsUrl.NS_URL);
+		uuidDto.setVersion(5);
+		uuidDto.setTypeFormatNs(TypeFormat.STD);
 
-		Map<String, String> options=new HashMap<>();
-		options.put("ibits", "8");
-		options.put("obits", "32");
-		options.put("obigendian", "true");
+		long[] uuidLongArray = UUIDHelper.generateUUIDLongArray(uuidDto, uuidDto.getVersion());
+		System.out.println("uuidLongArray = " + Arrays.toString(uuidLongArray));
 
-		Map<String, String> _options=new HashMap<>();
-		_options.put("ibits", "32");
-		_options.put("ibigendian", "true");
+		Assertions.assertTrue(uuidLongArray.length == 16);
+		Assertions.assertTrue(uuidLongArray[1] == 139);
+		Assertions.assertTrue(uuidLongArray[12] == 72);
 
-		return UI32Common.getA2s(UI32Common.getSha1Core(UI32Common.getS2a(s, options), s.length()*8), _options);
+		String uuidFormat = A2HS.format(uuidDto.getTypeFormatNs().getTypeFormat(), uuidLongArray);
+		System.out.println("uuidFormat = " + uuidFormat);
+
+		Assertions.assertTrue("148bdfa9-7596-5319-a197-ead64880df40".equals(uuidFormat));
 	}
 
 }

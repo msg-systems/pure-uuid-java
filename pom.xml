@@ -30,7 +30,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.thinkenterprise</groupId>
+	<groupId>com.graphqlio</groupId>
 	<artifactId>pure-uuid-java</artifactId>
 	<version>0.0.9</version>
 	<packaging>jar</packaging>
@@ -39,8 +39,10 @@
 	<properties>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
-	    <java.source.version>8</java.source.version>
-        <java.target.version>8</java.target.version>
+	        <java.source.version>8</java.source.version>
+                <java.target.version>8</java.target.version>
+                <junit.jupiter.version>5.5.2</junit.jupiter.version>
+                <junit.platform.version>1.5.2</junit.platform.version>
 	</properties>
 
 
@@ -50,6 +52,32 @@
 			<artifactId>commons-lang</artifactId>
 			<version>2.6</version>
 		</dependency>
+
+		<dependency>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter-engine</artifactId>
+		    <version>${junit.jupiter.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.junit.platform</groupId>
+		    <artifactId>junit-platform-runner</artifactId>
+		    <version>${junit.platform.version}</version>
+		    <scope>test</scope>
+		</dependency>
+
 	</dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

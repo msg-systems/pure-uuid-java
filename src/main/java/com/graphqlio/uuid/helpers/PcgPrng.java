@@ -24,12 +24,12 @@
  * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * *
  ******************************************************************************/
-package com.thinkenterprise.uuid.helpers;
+package com.graphqlio.uuid.helpers;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
-import com.thinkenterprise.uuid.domain.GlobaleConstants;
+import com.graphqlio.uuid.domain.GlobaleConstants;
 
 /**
  * PcgPrng helps to create random Number from Time((PRNG)).

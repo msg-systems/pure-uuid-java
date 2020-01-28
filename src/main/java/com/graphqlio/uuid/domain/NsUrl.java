@@ -24,50 +24,36 @@
  * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * *
  ******************************************************************************/
-package com.thinkenterprise.uuid.helpers;
-
-import com.thinkenterprise.uuid.domain.GlobaleConstants;
+package com.graphqlio.uuid.domain;
 
 /**
- * Encoder 
+ * Enum propose List of ns URL. 
  *
  * @author Michael Schüfer
  * @author Ahmed Amedlous
  * @author Dr. Edgar Müller
  */
-public class Encode {
+public enum NsUrl {
+	NIL("nil"),
+	NS_DNS("ns:DNS"),
+	NS_URL("ns:URL"),
+	NS_OID("ns:OID"),
+	NS_X500("ns:X500");
+
+	private final String nsUrl;
 	
+	/**}
+	* Class constructor.
+	*/
+	private NsUrl(String nsUrl) {
+		this.nsUrl = nsUrl;
+	}
 	
 	/**
-	 * decodes data in the Base85 encoding scheme Z85
-	 * @param data
-	 * @param size
-	 * @return the result string from the Z85 encoder
-	 * @throws Exception 
+	 * @return the nsUrl
 	 */
-	public static String  getZ85Encode (long [] data,int size) throws Exception {
-        if ((size % 4) != 0)
-            throw new Exception("z85_encode: invalid input length (multiple of 4 expected)");
-        String str = "";
-        long i = 0, value = 0;
-        while (i < size) {
-            value = (value * 256) + data[(int) i++];
-            if ((i % 4) == 0) {
-                int divisor = 85 * 85 * 85 * 85;
-                while (divisor >= 1) {
-                    int idx = (int) (Math.floor(value / divisor) % 85);
-                     
-                    // sometime idx kommt negative
-                    if(idx>0) {
-                    	 str += GlobaleConstants.Z85_ENCODER[idx];
-                    }
-                   
-                    divisor /= 85;
-                }
-                value = 0;
-             }
-        }
-        return str;
-    };
+	public String getNsUrl() {
+		return nsUrl;
+	}	
 
 }

@@ -24,12 +24,12 @@
  * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * *
  ******************************************************************************/
-package com.thinkenterprise.uuid.helpers;
+package com.graphqlio.uuid.helpers;
 
 import java.util.Date;
 
-import com.thinkenterprise.uuid.domain.GlobaleConstants;
-import com.thinkenterprise.uuid.domain.UUIDDto;
+import com.graphqlio.uuid.domain.GlobaleConstants;
+import com.graphqlio.uuid.domain.UUIDDto;
 
 /**
  * Helper to create UUID Table. 

@@ -24,49 +24,48 @@
  * **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * *
  ******************************************************************************/
-package com.thinkenterprise.uuid.helpers;
+package com.graphqlio.uuid.domain;
 
-import com.thinkenterprise.uuid.domain.GlobaleConstants;
-
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
- *  UI64 helpers. 
+ * Class testing pure-uuid
  *
- * @author Michael Schüfer
- * @author Ahmed Amedlous
- * @author Dr. Edgar Müller
+ * @author Michael Schäfer
+ * @author Torsten Kühnert
  */
-public final class UI64 {
 
+public class UUIDDtoTest {
 
-	/**
-	 * Null handling
-	 * @param tab
-	 * @return UI64 for zero
-	 */
-	public static final long[] getUi64Zero(long tab[]) {
+	@Test
+	public void whenUUIDDtoIsCreatedThenOnlyIntFieldsAreSet() {
+		UUIDDto uuidDto = new UUIDDto();
 
-		return UI64Common.getUi64D2i(tab);
-
-	}
-	/**
-	 * Convert long to UI64
-
-	 * @param tab 
-	 * @param n 
-	 * @return the converted UI64 from the long 
-	 */
-	public static final long[] getUi64N2i(long tab[],long n) {
-		long [] ui64 = getUi64Zero(tab);
-		for (int i = 0; i < GlobaleConstants.UI64_DIGITS; i++) {
-			ui64[i] = (long) Math.floor(n % GlobaleConstants.UI64_DIGIT_BASE);
-			n /= GlobaleConstants.UI64_DIGIT_BASE;
-		}
-		return ui64;
-
-
+		Assertions.assertTrue(uuidDto.getVersion() == 0);
+		Assertions.assertTrue(uuidDto.getNsUrl() == null);
+		Assertions.assertTrue(uuidDto.getUrl() == null);
+		Assertions.assertTrue(uuidDto.getUuidFormat() == null);
+		Assertions.assertTrue(uuidDto.getNs() == null);
+		Assertions.assertTrue(uuidDto.getVersionSid() == 0);
+		Assertions.assertTrue(uuidDto.getSidFormat() == null);
+		Assertions.assertTrue(uuidDto.getTypeFormatNs() == null);
+		Assertions.assertTrue(uuidDto.getTypeFormatSid() == null);
 	}
 
+	@Test
+	public void whenUUIDDtoSettersAreUsedThenFieldsAreSetCorrect() {
+		UUIDDto uuidDto = new UUIDDto();
+		uuidDto.setVersion(6);
+		uuidDto.setVersionSid(-15);
+		uuidDto.setNs(new long[] { 34L, 15L, 26262L });
+		uuidDto.setNsUrl(NsUrl.NS_X500);
 
+		Assertions.assertTrue(uuidDto.getVersion() == 6);
+		Assertions.assertTrue(uuidDto.getVersionSid() == -15);
+		Assertions.assertTrue(uuidDto.getNs() != null);
+		Assertions.assertTrue(uuidDto.getNs().length == 3);
+		Assertions.assertTrue(uuidDto.getNsUrl() == NsUrl.NS_X500);
+	}
 
 }

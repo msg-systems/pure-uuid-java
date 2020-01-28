@@ -14,4 +14,9 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn -B clean install --file pom.xml
+      run: mvn -B package --file pom.xml
+    - name: Upload
+    - uses: actions/upload-artifact@v1
+      with:
+        name: pure-uuid-java-0.0.9.jar
+        path: /target

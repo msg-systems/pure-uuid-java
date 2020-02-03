@@ -40,8 +40,10 @@ public class UtilCommon {
 	/**
 	 * API method: import UUID from standard array of numbers
 	 * 
-	 * @param arr a standard array od numbers
+	 * @param arr a standard array od numbers 
 	 * @return imported uuid
+	 * @throws Exception in invalid argument
+	 * 
 	 */
 	public static long[] importUUID(long arr[]) throws Exception {
 		long[] tab = {};

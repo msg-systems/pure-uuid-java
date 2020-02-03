@@ -40,8 +40,8 @@ public final class UI64 {
 
 
 	/**
-	 * Null handling
-	 * @param tab tab
+	 * convert between individual digits and the UI64 representation, Null handling
+	 * @param tab array of long
 	 * @return UI64 for zero
 	 */
 	public static final long[] getUi64Zero(long tab[]) {
@@ -52,8 +52,8 @@ public final class UI64 {
 	/**
 	 * Convert long to UI64
 
-	 * @param tab tab
-	 * @param n n
+	 * @param tab, array of long 
+	 * @param n, long to convert
 	 * @return the converted UI64 from the long 
 	 */
 	public static final long[] getUi64N2i(long tab[],long n) {

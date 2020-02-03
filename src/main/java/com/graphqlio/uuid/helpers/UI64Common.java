@@ -40,7 +40,7 @@ public final class UI64Common {
 	/**
 	 * 
 	 * convert between individual digits and the UI64 representation
-	 * @param tab tab
+	 * @param tab, array of digits
 	 * @return the UI64 representation
 	 */
 	public static final long[] getUi64D2i(long tab[]) {
@@ -141,31 +141,30 @@ public final class UI64Common {
 	}
 	
 	/**
-	 * Die Methode gibt die generierende Liste UUID r�ck.
 	 * store the 60 LSB of the time in the UUID  
-	 * @param converTime
-	 * @param n n
+	 * @param convertTime, time parameter to convert
+	 * @param n, bits used for rotation
 	 * @return the generating uuid list
 	 */
-	public static long[] getStoreLSBinUUID(long converTime[],int n) {
+	public static long[] getStoreLSBinUUID(long convertTime[],int n) {
 		long ov=0;
 		long uuid[]=new long[16];
 
-		ov = getUi64Rorn(converTime, n); 
+		ov = getUi64Rorn(convertTime, n); 
 		uuid[3] = (ov & 0xFF);
-		ov = getUi64Rorn(converTime, n);
+		ov = getUi64Rorn(convertTime, n);
 		uuid[2] = (ov & 0xFF);
-		ov = getUi64Rorn(converTime, n); 
+		ov = getUi64Rorn(convertTime, n); 
 		uuid[1] = (ov & 0xFF);
-		ov = getUi64Rorn(converTime, n);
+		ov = getUi64Rorn(convertTime, n);
 		uuid[0] = (ov & 0xFF);
-		ov = getUi64Rorn(converTime, n);
+		ov = getUi64Rorn(convertTime, n);
 		uuid[5] = (ov & 0xFF);
-		ov = getUi64Rorn(converTime, n);
+		ov = getUi64Rorn(convertTime, n);
 		uuid[4] = (ov & 0xFF);
-		ov = getUi64Rorn(converTime, n);
+		ov = getUi64Rorn(convertTime, n);
 		uuid[7] = (ov & 0xFF);
-		ov = getUi64Rorn(converTime, n);
+		ov = getUi64Rorn(convertTime, n);
 		uuid[6] = (ov & 0x0F);
 
 		return uuid;
@@ -175,7 +174,6 @@ public final class UI64Common {
 	 * multiply UI64 (y) to UI64 (x) and return overflow/carry as UI64 
 	 * @param x a UI64
 	 * @param y the UI64 to multiply
-	 * @return overflow/carry as UI64 
 	 */
 		public static void  getUi64Mul(long []x, long y []) {
 
@@ -214,12 +212,12 @@ public final class UI64Common {
 	}
 
 
-		/**
-		 * rotate right UI64 (x) by a "s" bits and return overflow/carry as number
-		 * @param x a UI64
-		 * @param s a int
-		 * @return overflow/carry as UI64 
-		 */
+	/**
+	 * rotate right UI64 (x) by a "s" bits and return overflow/carry as number
+	 * @param x a UI64
+	 * @param s a int
+	 * @throws Exception if invalid number of bits to shift
+	 */
 
 	public static void getUi64Ror(long[] x,long s) throws Exception {
 
@@ -261,7 +259,6 @@ public final class UI64Common {
 	 * XOR UI64 (y) onto UI64 (x) and return x
 	 * @param x a UI64
 	 * @param y a UI64
-	 * @return x XOR y
 	 */
 	public static void getUi64Xor(long []x,long [] y) {
 		for (int i = 0; i < GlobaleConstants.UI64_DIGITS; i++)
@@ -270,7 +267,7 @@ public final class UI64Common {
 	}
 	
 	/**
-	 * AND operation: UI64 (x) &= UI64 (y)
+	 * AND operation: UI64 (x) with UI64 (y)
 	 * @param x a UI64
 	 * @param y a UI64
 	 * @return x AND y
@@ -296,8 +293,8 @@ public final class UI64Common {
 	/**
 	 * rotate left UI64 (x) by a "s" bits and return overflow/carry as UI64
 	 * @param x the left UI64
-	 * @param s s
-	 * @return overflow/carry as UI64
+	 * @param s a int
+	 * @throws Exception if invalid number of bits to shift
 	 */
 	public static void getUi64Rol(long x[], long s) throws Exception {
 		/*  sanity check shifting  */

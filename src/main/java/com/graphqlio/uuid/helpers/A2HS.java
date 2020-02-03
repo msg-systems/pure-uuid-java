@@ -42,6 +42,7 @@ public class A2HS {
 	 * @param  type  the type of the uuid to be format
 	 * @param  uuid[] the uuid to be format
 	 * @return the result as a string from the uuid
+	 * @throws Exception (mabe thrown by getZ85Encode)
 	 */
 	public static String format(String type, long uuid[]) throws Exception {
 		String str = "";

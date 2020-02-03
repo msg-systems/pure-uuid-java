@@ -49,7 +49,7 @@ public final class ParseUUID {
 	 * @param str a usual textual representation
 	 * @param type type of encoding form
 	 * @return the result uuid of 
-	 * @throws Exception 
+	 * @throws Exception in case of invalid string representation 
 	 */
 	public static long [] getParse(String str, String type) throws Exception {
 		long[] bytes=new long[16];

@@ -154,7 +154,7 @@ public final class UI32Common {
 	/**
 	 * calculate the SHA-1 of an array of big-endian words, and a bit length
 	 * @param x the array of big-endian words
-	 * @param y the bit length
+	 * @param len the bit length
 	 * @return the SHA-1 result of the calculation
 	 * */
 	public static long[] getSha1Core(Long[] x, int len) {
@@ -269,7 +269,8 @@ public final class UI32Common {
 
 	/**
 	 * array to string conversion
-	 * @param t the current to determine
+	 * @param a the input array to convert
+	 * @param _options, map of options
 	 * @return the appropriate additive constant for the current iteration
 	 * */
 	public static String getA2s(long[] a, Map<String, String> _options) {

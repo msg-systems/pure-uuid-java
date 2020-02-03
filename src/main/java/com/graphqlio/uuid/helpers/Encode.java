@@ -40,10 +40,10 @@ public class Encode {
 	
 	/**
 	 * decodes data in the Base85 encoding scheme Z85
-	 * @param data Parameter Data
-	 * @param size Size Data 
+	 * @param data (encoded data)
+	 * @param size of data
 	 * @return the result string from the Z85 encoder
-	 * @throws Exception 
+	 * @throws Exception  (invalid input length (multiple of 4 expected))
 	 */
 	public static String  getZ85Encode (long [] data,int size) throws Exception {
         if ((size % 4) != 0)

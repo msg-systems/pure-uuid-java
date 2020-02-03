@@ -52,7 +52,7 @@ public class UUIDHelper {
 	 * supported versions: 1, 3, 4 or 5
 	 * actually, same implementation for 3 and 5
 	 * @param version
-	 * @return
+	 * @return Nthing
 	 * @throws Exception 
 	 */
 	private static long[] createUUIDByVersion(UUIDDto uUIDDto,int version) throws Exception {

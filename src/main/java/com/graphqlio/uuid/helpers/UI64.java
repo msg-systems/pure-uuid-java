@@ -41,7 +41,7 @@ public final class UI64 {
 
 	/**
 	 * Null handling
-	 * @param tab
+	 * @param tab tab
 	 * @return UI64 for zero
 	 */
 	public static final long[] getUi64Zero(long tab[]) {
@@ -52,8 +52,8 @@ public final class UI64 {
 	/**
 	 * Convert long to UI64
 
-	 * @param tab 
-	 * @param n 
+	 * @param tab tab
+	 * @param n n
 	 * @return the converted UI64 from the long 
 	 */
 	public static final long[] getUi64N2i(long tab[],long n) {

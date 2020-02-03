@@ -183,12 +183,13 @@ public class Md5 {
 
 	/**  
 	 * basic operations the algorithm uses
-	 * @param q
-	 * @param a
-	 * @param b
-	 * @param x
-	 * @param s
-	 * @param t
+	 * @param a a
+	 * @param b b
+	 * @param c c
+	 * @param d c
+	 * @param x x
+	 * @param s s
+	 * @param t t
 	 * @return the result MD5Mmn 
 	 */
 	private static long getMd5Mmn (long q,long a,long b,long x,long s,long t) {
@@ -202,13 +203,13 @@ public class Md5 {
 	}
 	/**
 	 * 
-	 * @param a
-	 * @param b
-	 * @param c
-	 * @param d
-	 * @param x
-	 * @param s
-	 * @param t
+	 * @param a a
+	 * @param b b
+	 * @param c c
+	 * @param d c
+	 * @param x x
+	 * @param s s
+	 * @param t t
 	 * @return Md5FF
 	 */
 	private static long getMd5FF (long a,long b,long c,long d,long x,long s,long t) {
@@ -218,13 +219,13 @@ public class Md5 {
 	}
 	/**
 	 * 
-	 * @param a
-	 * @param b
-	 * @param c
-	 * @param d
-	 * @param x
-	 * @param s
-	 * @param t
+	 * @param a a
+	 * @param b b
+	 * @param c c
+	 * @param d c
+	 * @param x x
+	 * @param s s
+	 * @param t t
 	 * @return Md5GG
 	 */
 	private static long getMd5GG (long a, long b,long c,long d, long x,long s,long t) {
@@ -233,13 +234,13 @@ public class Md5 {
 
 	/**
 	 * 
-	 * @param a
-	 * @param b
-	 * @param c
-	 * @param d
-	 * @param x
-	 * @param s
-	 * @param t
+	 * @param a a
+	 * @param b b
+	 * @param c c
+	 * @param d c
+	 * @param x x
+	 * @param s s
+	 * @param t t
 	 * @return md5HH
 	 */
 	private static long getMd5HH (long a,long b,long c,long d,long x, long s,long t) {
@@ -247,13 +248,13 @@ public class Md5 {
 	}
 	/**
 	 * 
-	 * @param a
-	 * @param b
-	 * @param c
-	 * @param d
-	 * @param x
-	 * @param s
-	 * @param t
+	 * @param a a
+	 * @param b b
+	 * @param c c
+	 * @param d c
+	 * @param x x
+	 * @param s s
+	 * @param t t
 	 * @return md5II
 	 */
 	private static long  getMd5II (long a,long b,long c,long d,long  x, long s,long t) {

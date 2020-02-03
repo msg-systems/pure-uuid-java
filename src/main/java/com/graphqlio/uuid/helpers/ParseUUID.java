@@ -89,11 +89,11 @@ public final class ParseUUID {
 
 	/**
 	 * 
-	 * @param str
-	 * @param begin
-	 * @param end
-	 * @param bytes
-	 * @param pos
+	 * @param str str
+	 * @param begin begin
+	 * @param end end
+	 * @param bytes bytes
+	 * @param pos pos
 	 */
 	private static void getHs2(String str, int begin, int end,long[] bytes,int pos) {
 		for (int i = begin; i <= end; i += 2) {
@@ -105,10 +105,10 @@ public final class ParseUUID {
 
 	/**
 	 * 
-	 * @param str
-	 * @param dest
-	 * @return
-	 * @throws Exception 
+	 * @param str str
+	 * @param dest dest
+	 * @return Nothing Nothing
+	 * @throws Exception Exception
 	 */
 	private static long[] getZ85Decode (String str,long[] dest) throws Exception {
 		int l = str.length();

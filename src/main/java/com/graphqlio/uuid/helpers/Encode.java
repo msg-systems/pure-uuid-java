@@ -40,8 +40,8 @@ public class Encode {
 	
 	/**
 	 * decodes data in the Base85 encoding scheme Z85
-	 * @param data
-	 * @param size
+	 * @param data Parameter Data
+	 * @param size Size Data 
 	 * @return the result string from the Z85 encoder
 	 * @throws Exception 
 	 */

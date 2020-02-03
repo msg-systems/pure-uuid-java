@@ -40,7 +40,7 @@ public final class UI64Common {
 	/**
 	 * 
 	 * convert between individual digits and the UI64 representation
-	 * @param tab
+	 * @param tab tab
 	 * @return the UI64 representation
 	 */
 	public static final long[] getUi64D2i(long tab[]) {
@@ -144,7 +144,7 @@ public final class UI64Common {
 	 * Die Methode gibt die generierende Liste UUID r�ck.
 	 * store the 60 LSB of the time in the UUID  
 	 * @param converTime
-	 * @param n
+	 * @param n n
 	 * @return the generating uuid list
 	 */
 	public static long[] getStoreLSBinUUID(long converTime[],int n) {
@@ -296,7 +296,7 @@ public final class UI64Common {
 	/**
 	 * rotate left UI64 (x) by a "s" bits and return overflow/carry as UI64
 	 * @param x the left UI64
-	 * @param s 
+	 * @param s s
 	 * @return overflow/carry as UI64
 	 */
 	public static void getUi64Rol(long x[], long s) throws Exception {

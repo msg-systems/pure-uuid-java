@@ -47,6 +47,7 @@ public final class PcgPrng {
 	 * @param radix the radix to create the random number
 	 * @param store the store
 	 * @return the array which create with the pseudo random number generator
+	 * @throws Exception may be thrown by createMagicConstant
 	 */
 	public static long[] getPrngClock(int len, int radix, long store[]) throws Exception {
 		long bytes[] = new long[len];
@@ -70,6 +71,7 @@ public final class PcgPrng {
 	 * @param radix the radix to create the random number
 	 * @param store the store
 	 * @return the array which create with the pseudo random number generator
+	 * @throws Exception may be thrown by createMagicConstant
 	 */
 	public static long[] getPrngLocal(int len, int radix, long store[]) throws Exception {
 		long bytes[] = new long[len];

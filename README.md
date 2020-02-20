@@ -4,7 +4,7 @@ The documentation of the reference implementation can be found at [Project Githu
 
  
 # Installation
-## Maven 
+## Maven
    
 ```
 mvn clean install

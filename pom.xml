@@ -25,7 +25,7 @@
 
 	<groupId>com.graphqlio</groupId>
 	<artifactId>pure-uuid-java</artifactId>
-	<version>0.0.10</version>
+	<version>0.2.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<url>http://graphqlio.com</url>
@@ -187,13 +187,6 @@
 								<goals>
 									<goal>sign</goal>
 								</goals>
-								<configuration>
-                                    <!-- Prevent `gpg` from using pinentry programs -->
-                                    <gpgArguments>
-                                       <arg>--pinentry-mode</arg>
-                                       <arg>loopback</arg>
-                                    </gpgArguments>
-                                </configuration>
 							</execution>
 						</executions>
 					</plugin>

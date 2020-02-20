@@ -2,7 +2,7 @@
 pure-uuid-java is the **Java** implementation of the **JavaScript** pure-uuid reference implementation. 
 The documentation of the reference implementation can be found at [Project Github] (https://github.com/rse/pure-uuid). 
 
- 
+
 # Installation
 ## Maven
    

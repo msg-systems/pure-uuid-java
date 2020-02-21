@@ -24,7 +24,7 @@
 package com.graphqlio.uuid.domain;
 
 /**
- * GlobaleConstants providing constants
+ * GlobaleConstants providing constants.
  *
  * @author Michael Schüfer
  * @author Ahmed Amedlous
@@ -39,11 +39,11 @@ public final class GlobaleConstants {
 
   public static final int TIME_TO_100_NSEC = 10000; // 1000 * 10
 
-  public static final long TAB_0[] = {0, 0, 0, 0, 0, 0, 0, 0};
+  public static final long[] TAB_0 = {0, 0, 0, 0, 0, 0, 0, 0};
 
-  public static final long MUL_TAB[] = {0x58, 0x51, 0xf4, 0x2d, 0x4c, 0x95, 0x7f, 0x2d};
-  public static final long INC_TAB[] = {0x14, 0x05, 0x7b, 0x7e, 0xf7, 0x67, 0x81, 0x4f};
-  public static final long MASK_TAB[] = {0x00, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff};
+  public static final long[] MUL_TAB = {0x58, 0x51, 0xf4, 0x2d, 0x4c, 0x95, 0x7f, 0x2d};
+  public static final long[] INC_TAB = {0x14, 0x05, 0x7b, 0x7e, 0xf7, 0x67, 0x81, 0x4f};
+  public static final long[] MASK_TAB = {0x00, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff};
 
   public static final int OUTPUT_18 = 18;
   public static final int OUTPUT_27 = 27;

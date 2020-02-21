@@ -39,12 +39,10 @@ public enum NsUrl {
 
   private final String nsUrl;
 
-  /** } Class constructor. */
   private NsUrl(String nsUrl) {
     this.nsUrl = nsUrl;
   }
 
-  /** @return the nsUrl */
   public String getNsUrl() {
     return nsUrl;
   }

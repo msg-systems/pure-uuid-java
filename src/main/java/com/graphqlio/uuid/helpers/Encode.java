@@ -26,7 +26,7 @@ package com.graphqlio.uuid.helpers;
 import com.graphqlio.uuid.domain.GlobaleConstants;
 
 /**
- * Encoder
+ * Encoder.
  *
  * @author Michael Schüfer
  * @author Ahmed Amedlous
@@ -35,7 +35,7 @@ import com.graphqlio.uuid.domain.GlobaleConstants;
 public class Encode {
 
   /**
-   * decodes data in the Base85 encoding scheme Z85
+   * decodes data in the Base85 encoding scheme Z85.
    *
    * @param data (encoded data)
    * @param size of data
@@ -43,10 +43,12 @@ public class Encode {
    * @throws Exception (invalid input length (multiple of 4 expected))
    */
   public static String getZ85Encode(long[] data, int size) throws Exception {
-    if ((size % 4) != 0)
+    if ((size % 4) != 0) {
       throw new Exception("z85_encode: invalid input length (multiple of 4 expected)");
+    }
     String str = "";
-    long i = 0, value = 0;
+    long i = 0;
+    long value = 0;
     while (i < size) {
       value = (value * 256) + data[(int) i++];
       if ((i % 4) == 0) {
@@ -65,5 +67,5 @@ public class Encode {
       }
     }
     return str;
-  };
+  }
 }

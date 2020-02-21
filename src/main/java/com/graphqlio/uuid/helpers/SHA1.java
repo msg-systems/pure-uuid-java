@@ -36,7 +36,7 @@ import java.util.Map;
 public final class SHA1 {
 
   /**
-   * Returns the SHA1 encoded key identifier
+   * Returns the SHA1 encoded key identifier.
    *
    * @param s string to encode
    * @return the SHA1
@@ -48,11 +48,11 @@ public final class SHA1 {
     options.put("obits", "32");
     options.put("obigendian", "true");
 
-    Map<String, String> _options = new HashMap<>();
-    _options.put("ibits", "32");
-    _options.put("ibigendian", "true");
+    Map<String, String> options2 = new HashMap<>();
+    options2.put("ibits", "32");
+    options2.put("ibigendian", "true");
 
     return UI32Common.getA2s(
-        UI32Common.getSha1Core(UI32Common.getS2a(s, options), s.length() * 8), _options);
+        UI32Common.getSha1Core(UI32Common.getS2a(s, options), s.length() * 8), options2);
   }
 }

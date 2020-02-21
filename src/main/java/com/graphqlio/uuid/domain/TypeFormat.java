@@ -38,12 +38,10 @@ public enum TypeFormat {
 
   private final String typeFormat;
 
-  /** Class constructor. */
   private TypeFormat(String typeFormat) {
     this.typeFormat = typeFormat;
   }
 
-  /** @return the nsUrl */
   public String getTypeFormat() {
     return typeFormat;
   }

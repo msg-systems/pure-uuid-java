@@ -35,24 +35,24 @@ import com.graphqlio.uuid.domain.GlobaleConstants;
 public final class UI64 {
 
   /**
-   * convert between individual digits and the UI64 representation, Null handling
+   * convert between individual digits and the UI64 representation, Null handling.
    *
    * @param tab array of long
    * @return UI64 for zero
    */
-  public static final long[] getUi64Zero(long tab[]) {
+  public static final long[] getUi64Zero(long[] tab) {
 
     return UI64Common.getUi64D2i(tab);
   }
 
   /**
-   * Convert long to UI64
+   * Convert long to UI64.
    *
-   * @param tab, array of long
-   * @param n, long to convert
+   * @param tab array of long
+   * @param n long to convert
    * @return the converted UI64 from the long
    */
-  public static final long[] getUi64N2i(long tab[], long n) {
+  public static final long[] getUi64N2i(long[] tab, long n) {
     long[] ui64 = getUi64Zero(tab);
     for (int i = 0; i < GlobaleConstants.UI64_DIGITS; i++) {
       ui64[i] = (long) Math.floor(n % GlobaleConstants.UI64_DIGIT_BASE);

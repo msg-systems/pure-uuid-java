@@ -26,24 +26,25 @@ package com.graphqlio.uuid.helpers;
 import com.graphqlio.uuid.domain.TypeFormat;
 
 /**
- * A2HS helper to format UUID into text
+ * A2HS helper to format UUID into text.
  *
  * @author Michael Schüfer
  * @author Ahmed Amedlous
  * @author Dr. Edgar Müller
  */
 public class A2HS {
+
   /**
-   * API method: format UUID into usual textual representation
+   * API method: format UUID into usual textual representation.
    *
    * @param type the type of the uuid to be format
-   * @param uuid[] the uuid to be format
+   * @param uuid the uuid to be format
    * @return the result as a string from the uuid
    * @throws Exception (mabe thrown by getZ85Encode)
    */
-  public static String format(String type, long uuid[]) throws Exception {
+  public static String format(String type, long[] uuid) throws Exception {
     String str = "";
-    String arr[];
+    String[] arr;
     if (type == TypeFormat.Z85.getTypeFormat()) {
       str = Encode.getZ85Encode(uuid, 16);
     } else if (type == TypeFormat.B16.getTypeFormat()) {
@@ -75,7 +76,7 @@ public class A2HS {
   }
 
   /**
-   * array to hex-string conversion
+   * array to hex-string conversion.
    *
    * @param bytes the array of the input bytes
    * @param begin the begin of the initial array bytes to convert
@@ -88,26 +89,33 @@ public class A2HS {
   private static String[] getA2hs(
       long[] bytes, int begin, int end, boolean uppercase, String[] str, int pos) {
 
-    for (int i = begin; i <= end; i++)
+    for (int i = begin; i <= end; i++) {
       if (mkNum(bytes[i], uppercase) != null) {
         str[pos++] = mkNum(bytes[i], uppercase);
       }
+    }
 
     return str;
   }
 
   private static String mkNum(long num, boolean uppercase) {
     String base16 = Long.toHexString(num); // num.toString(16);
-    if (base16.length() < 2) base16 = "0" + base16;
-    if (uppercase) base16 = base16.toUpperCase();
+    if (base16.length() < 2) {
+      base16 = "0" + base16;
+    }
+    if (uppercase) {
+      base16 = base16.toUpperCase();
+    }
     return base16;
   }
 
   /**
+   * converts an string array to a string.
+   *
    * @param arr array of the string to convert
    * @return the convertion result of the string
    */
-  private static String convertTabToString(String arr[]) {
+  private static String convertTabToString(String[] arr) {
     String tabToString = "";
 
     for (int i = 0; i < arr.length; i++) {

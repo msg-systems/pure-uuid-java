@@ -35,18 +35,18 @@ import com.graphqlio.uuid.domain.GlobaleConstants;
 public final class UI64Common {
 
   /**
-   * convert between individual digits and the UI64 representation
+   * convert between individual digits and the UI64 representation.
    *
-   * @param tab, array of digits
+   * @param tab array of digits
    * @return the UI64 representation
    */
-  public static final long[] getUi64D2i(long tab[]) {
+  public static final long[] getUi64D2i(long[] tab) {
 
     return new long[] {tab[7], tab[6], tab[5], tab[4], tab[3], tab[2], tab[1], tab[0]};
   }
 
   /**
-   * multiply number (n) to UI64 (x) and return overflow/carry as number
+   * multiply number (n) to UI64 (x) and return overflow/carry as number.
    *
    * @param x input UI64
    * @param n multiply number
@@ -63,7 +63,7 @@ public final class UI64Common {
   }
 
   /**
-   * add UI64 (y) to UI64 (x) and return overflow/carry as number
+   * add UI64 (y) to UI64 (x) and return overflow/carry as number.
    *
    * @param x the first UI64
    * @param y the second UI64 to add
@@ -81,7 +81,7 @@ public final class UI64Common {
   }
 
   /**
-   * add UI64 (y) to UI64 (x) and return overflow/carry as number
+   * add UI64 (y) to UI64 (x) and return overflow/carry as number.
    *
    * @param x the first UI64
    * @param y the second UI64 to add
@@ -100,12 +100,12 @@ public final class UI64Common {
 
   /**
    * Convertion between UI 64 representation and number Diese Methode gibt long als Wert
-   * (471779603359996160) manchmal r�ck
+   * (471779603359996160) manchmal r�ck.
    *
    * @param x the UI64 to convert
    * @return convertion between UI 64 representation and number
    */
-  public static long getUi64I2n(long x[]) {
+  public static long getUi64I2n(long[] x) {
     long n = 0;
     for (long i = GlobaleConstants.UI64_DIGITS - 1; i >= 0; i--) {
       n *= GlobaleConstants.UI64_DIGIT_BASE;
@@ -115,7 +115,7 @@ public final class UI64Common {
   }
 
   /**
-   * rotate right UI64 (x) by a "s" bits and return overflow/carry as number
+   * rotate right UI64 (x) by a "s" bits and return overflow/carry as number.
    *
    * @param x the UI64 to rotate
    * @param s a int
@@ -123,12 +123,14 @@ public final class UI64Common {
    */
   private static long getUi64Rorn(long[] x, int s) {
     long[] ov = UI64.getUi64Zero(GlobaleConstants.TAB_0);
-    if ((s % GlobaleConstants.UI64_DIGIT_BITS) != 0)
+    if ((s % GlobaleConstants.UI64_DIGIT_BITS) != 0) {
       throw new Error("ui64_rorn: only bit rotations supported with a multiple of digit bits");
+    }
     long k = (long) Math.floor(s / GlobaleConstants.UI64_DIGIT_BITS);
     for (long i = 0; i < k; i++) {
-      for (long j = GlobaleConstants.UI64_DIGITS - 1 - 1; j >= 0; j--)
+      for (long j = GlobaleConstants.UI64_DIGITS - 1 - 1; j >= 0; j--) {
         ov[(int) (j + 1)] = ov[(int) j];
+      }
       ov[0] = x[0];
       int m = 0;
       // ?? zu pr�fen Fall Fehler
@@ -142,15 +144,15 @@ public final class UI64Common {
   }
 
   /**
-   * store the 60 LSB of the time in the UUID
+   * store the 60 LSB of the time in the UUID.
    *
-   * @param convertTime, time parameter to convert
-   * @param n, bits used for rotation
+   * @param convertTime time parameter to convert
+   * @param n bits used for rotation
    * @return the generating uuid list
    */
-  public static long[] getStoreLSBinUUID(long convertTime[], int n) {
+  public static long[] getStoreLSBinUUID(long[] convertTime, int n) {
     long ov = 0;
-    long uuid[] = new long[16];
+    long[] uuid = new long[16];
 
     ov = getUi64Rorn(convertTime, n);
     uuid[3] = (ov & 0xFF);
@@ -173,18 +175,21 @@ public final class UI64Common {
   }
 
   /**
-   * multiply UI64 (y) to UI64 (x) and return overflow/carry as UI64
+   * multiply UI64 (y) to UI64 (x) and return overflow/carry as UI64.
    *
    * @param x a UI64
    * @param y the UI64 to multiply
    */
-  public static void getUi64Mul(long[] x, long y[]) {
+  public static void getUi64Mul(long[] x, long[] y) {
 
-    int i, j;
+    int i;
+    int j;
 
     /* clear temporary result buffer zx */
-    double zx[] = new double[(int) (GlobaleConstants.UI64_DIGITS + GlobaleConstants.UI64_DIGITS)];
-    for (i = 0; i < (GlobaleConstants.UI64_DIGITS + GlobaleConstants.UI64_DIGITS); i++) zx[i] = 0;
+    double[] zx = new double[(int) (GlobaleConstants.UI64_DIGITS + GlobaleConstants.UI64_DIGITS)];
+    for (i = 0; i < (GlobaleConstants.UI64_DIGITS + GlobaleConstants.UI64_DIGITS); i++) {
+      zx[i] = 0;
+    }
 
     /* perform multiplication operation */
     double carry;
@@ -206,8 +211,9 @@ public final class UI64Common {
     }
 
     /* provide result by splitting zx into x and ov */
-    for (i = 0; i < GlobaleConstants.UI64_DIGITS; i++)
+    for (i = 0; i < GlobaleConstants.UI64_DIGITS; i++) {
       x[i] = (int) zx[i]; // zu prüfen (Konflikt vielleicht und falsche Ergebnis Konvert zu)
+    }
 
     // Verleeren die Tabelle
     // return null; //;zx.slice(GlobaleConstants.UI64_DIGITS,
@@ -215,7 +221,7 @@ public final class UI64Common {
   }
 
   /**
-   * rotate right UI64 (x) by a "s" bits and return overflow/carry as number
+   * rotate right UI64 (x) by a "s" bits and return overflow/carry as number.
    *
    * @param x a UI64
    * @param s a int
@@ -224,11 +230,11 @@ public final class UI64Common {
   public static void getUi64Ror(long[] x, long s) throws Exception {
 
     /* sanity check shifting */
-    if (s > (GlobaleConstants.UI64_DIGITS * GlobaleConstants.UI64_DIGIT_BITS))
+    if (s > (GlobaleConstants.UI64_DIGITS * GlobaleConstants.UI64_DIGIT_BITS)) {
       throw new Exception("ui64_ror: invalid number of bits to shift");
-
+    }
     /* prepare temporary buffer zx */
-    long zx[] = new long[(int) (GlobaleConstants.UI64_DIGITS + GlobaleConstants.UI64_DIGITS)];
+    long[] zx = new long[(int) (GlobaleConstants.UI64_DIGITS + GlobaleConstants.UI64_DIGITS)];
     long i;
     for (i = 0; i < GlobaleConstants.UI64_DIGITS; i++) {
       zx[(int) (i + GlobaleConstants.UI64_DIGITS)] = x[(int) i];
@@ -248,58 +254,68 @@ public final class UI64Common {
             & ((1 << GlobaleConstants.UI64_DIGIT_BITS) - 1);
     for (i = (int) (GlobaleConstants.UI64_DIGITS + GlobaleConstants.UI64_DIGITS - 1 - k1 + 1);
         i < GlobaleConstants.UI64_DIGITS + GlobaleConstants.UI64_DIGITS;
-        i++) zx[(int) i] = 0;
+        i++) {
+      zx[(int) i] = 0;
+    }
 
     /* provide result by splitting zx into x and ov */
-    for (i = 0; i < GlobaleConstants.UI64_DIGITS; i++)
+    for (i = 0; i < GlobaleConstants.UI64_DIGITS; i++) {
       x[(int) i] = zx[(int) (i + GlobaleConstants.UI64_DIGITS)];
+    }
   }
 
   /**
-   * XOR UI64 (y) onto UI64 (x) and return x
+   * XOR UI64 (y) onto UI64 (x) and return x.
    *
    * @param x a UI64
    * @param y a UI64
    */
   public static void getUi64Xor(long[] x, long[] y) {
-    for (int i = 0; i < GlobaleConstants.UI64_DIGITS; i++) x[i] ^= y[i];
+    for (int i = 0; i < GlobaleConstants.UI64_DIGITS; i++) {
+      x[i] ^= y[i];
+    }
   }
 
   /**
-   * AND operation: UI64 (x) with UI64 (y)
+   * AND operation: UI64 (x) with UI64 (y).
    *
    * @param x a UI64
    * @param y a UI64
    * @return x AND y
    */
-  public static long[] getUi64And(long x[], long y[]) {
-    for (int i = 0; i < GlobaleConstants.UI64_DIGITS; i++) x[i] &= y[i];
+  public static long[] getUi64And(long[] x, long[] y) {
+    for (int i = 0; i < GlobaleConstants.UI64_DIGITS; i++) {
+      x[i] &= y[i];
+    }
     return x;
   }
 
   /**
-   * OR operation: UI64 (x) |= UI64 (y)
+   * OR operation: UI64 (x) |= UI64 (y).
    *
    * @param x a UI64
    * @param y a UI64
    * @return x OR y
    */
   public static int[] getUi64Or(int[] x, int[] y) {
-    for (int i = 0; i < GlobaleConstants.UI64_DIGITS; i++) x[i] |= y[i];
+    for (int i = 0; i < GlobaleConstants.UI64_DIGITS; i++) {
+      x[i] |= y[i];
+    }
     return x;
   }
 
   /**
-   * rotate left UI64 (x) by a "s" bits and return overflow/carry as UI64
+   * rotate left UI64 (x) by a "s" bits and return overflow/carry as UI64.
    *
    * @param x the left UI64
    * @param s a int
    * @throws Exception if invalid number of bits to shift
    */
-  public static void getUi64Rol(long x[], long s) throws Exception {
+  public static void getUi64Rol(long[] x, long s) throws Exception {
     /* sanity check shifting */
-    if (s > (GlobaleConstants.UI64_DIGITS * GlobaleConstants.UI64_DIGIT_BITS))
+    if (s > (GlobaleConstants.UI64_DIGITS * GlobaleConstants.UI64_DIGIT_BITS)) {
       throw new Exception("ui64_rol: invalid number of bits to shift");
+    }
 
     /* prepare temporary buffer zx */
     long[] zx = new long[(int) (GlobaleConstants.UI64_DIGITS + GlobaleConstants.UI64_DIGITS)];
@@ -318,10 +334,14 @@ public final class UI64Common {
               & ((1 << GlobaleConstants.UI64_DIGIT_BITS) - 1);
     }
     zx[(int) (0 + k1)] = (zx[0] << k2) & ((1 << GlobaleConstants.UI64_DIGIT_BITS) - 1);
-    for (i = 0 + k1 - 1; i >= 0; i--) zx[(int) i] = 0;
+    for (i = 0 + k1 - 1; i >= 0; i--) {
+      zx[(int) i] = 0;
+    }
 
     /* provide result by splitting zx into x and ov */
-    for (i = 0; i < GlobaleConstants.UI64_DIGITS; i++) x[(int) i] = zx[(int) i];
+    for (i = 0; i < GlobaleConstants.UI64_DIGITS; i++) {
+      x[(int) i] = zx[(int) i];
+    }
     // return zx.slice(UI64_DIGITS, UI64_DIGITS);
   }
 }

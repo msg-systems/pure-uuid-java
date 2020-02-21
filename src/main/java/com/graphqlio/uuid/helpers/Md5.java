@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * MD5 Encoder
+ * MD5 Encoder.
  *
  * @author Michael Schüfer
  * @author Ahmed Amedlous
@@ -36,7 +36,7 @@ import java.util.Map;
 public class Md5 {
 
   /**
-   * calculate the MD5 of an octet string
+   * calculate the MD5 of an octet string.
    *
    * @param s the octet string to calculate
    * @return the result string for the md5
@@ -48,17 +48,17 @@ public class Md5 {
     options.put("obits", "32");
     options.put("obigendian", "false");
 
-    Map<String, String> _options = new HashMap<>();
-    _options.put("ibits", "32");
-    _options.put("ibigendian", "false");
+    Map<String, String> options2 = new HashMap<>();
+    options2.put("ibits", "32");
+    options2.put("ibigendian", "false");
 
-    String sResult =
-        UI32Common.getA2s(getMd5Core(UI32Common.getS2a(s, options), s.length() * 8), _options);
-    return sResult;
+    String result =
+        UI32Common.getA2s(getMd5Core(UI32Common.getS2a(s, options), s.length() * 8), options2);
+    return result;
   }
 
   /**
-   * calculate the MD5 of an array of little-endian words, and a bit length
+   * calculate the MD5 of an array of little-endian words, and a bit length.
    *
    * @param xx array of little-endian words
    * @param len the bit length
@@ -78,7 +78,7 @@ public class Md5 {
 
     for (int i = 0; i < x.length; i++) {
       if (x[i] == null) {
-        x[i] = 0l;
+        x[i] = 0L;
       }
     }
 
@@ -88,11 +88,6 @@ public class Md5 {
     long d = 271733878;
 
     for (int i = 0; i < x.length; i += 16) {
-      long olda = a;
-      long oldb = b;
-      long oldc = c;
-      long oldd = d;
-
       a = getMd5FF(a, b, c, d, x[i + 0], 7, -680876936);
       d = getMd5FF(d, a, b, c, x[i + 1], 12, -389564586);
       c = getMd5FF(c, d, a, b, x[i + 2], 17, 606105819);
@@ -169,18 +164,22 @@ public class Md5 {
       c = getMd5II(c, d, a, b, x[i + 2], 15, 718787259);
       b = getMd5II(b, c, d, a, x[i + 9], 21, -343485551);
 
+      long olda = a;
       a = UI32Common.getUi32Add(a, olda);
+      long oldb = b;
       b = UI32Common.getUi32Add(b, oldb);
+      long oldc = c;
       c = UI32Common.getUi32Add(c, oldc);
+      long oldd = d;
       d = UI32Common.getUi32Add(d, oldd);
     }
-    long tabResult[] = {a, b, c, d};
+    long[] tabResult = {a, b, c, d};
 
     return tabResult;
   }
 
   /**
-   * basic operations the algorithm uses
+   * basic operations the algorithm uses.
    *
    * @param a a
    * @param b b
@@ -197,11 +196,13 @@ public class Md5 {
     long rolArg1 = UI32Common.getUi32Add(add32Arg1, add32Arg2);
     long add32Arg = UI32Common.getUi32Rol(rolArg1, s);
 
-    long sResult = UI32Common.getUi32Add(add32Arg, b);
-    return sResult;
+    long result = UI32Common.getUi32Add(add32Arg, b);
+    return result;
   }
 
   /**
+   * getMd5FF.
+   *
    * @param a a
    * @param b b
    * @param c c
@@ -213,11 +214,13 @@ public class Md5 {
    */
   private static long getMd5FF(long a, long b, long c, long d, long x, long s, long t) {
 
-    long sResult = getMd5Mmn((b & c) | ((~b) & d), a, b, x, s, t);
-    return sResult;
+    long result = getMd5Mmn((b & c) | ((~b) & d), a, b, x, s, t);
+    return result;
   }
 
   /**
+   * getMd5GG.
+   *
    * @param a a
    * @param b b
    * @param c c
@@ -232,6 +235,8 @@ public class Md5 {
   }
 
   /**
+   * getMd5HH.
+   *
    * @param a a
    * @param b b
    * @param c c
@@ -246,6 +251,8 @@ public class Md5 {
   }
 
   /**
+   * getMd5II.
+   *
    * @param a a
    * @param b b
    * @param c c

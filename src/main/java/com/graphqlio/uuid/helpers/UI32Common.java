@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.graphqlio.uuid.domain.GlobaleConstants;
 
 /**
@@ -45,13 +44,13 @@ public final class UI32Common {
    */
 
   /**
-   * string to array conversion
+   * string to array conversion.
    *
    * @param s string to encode
-   * @param _options the map for the options
+   * @param options2 the map for the options
    * @return the s2a
    */
-  public static Long[] getS2a(String s, Map<String, String> _options) {
+  public static Long[] getS2a(String s, Map<String, String> options2) {
     /* determine options */
     // String[] options={"8","8","true"};
     Map<String, String> options = new HashMap<>();
@@ -59,15 +58,16 @@ public final class UI32Common {
     options.put("obits", "8");
     options.put("obigendian", "true");
 
-    for (Map.Entry<String, String> entry : _options.entrySet()) {
+    for (Map.Entry<String, String> entry : options2.entrySet()) {
       options.put(entry.getKey(), entry.getValue());
     }
 
     /* convert string to array */
-    Long a[] = {};
+    Long[] a = {};
     List<Long> list = new ArrayList<>();
     int i = 0;
-    int c, C = 0;
+    int c;
+    int cc = 0;
     int ck = 0;
     long w = 0;
     int wk = 0;
@@ -76,8 +76,8 @@ public final class UI32Common {
       /* fetch next octet from string */
 
       if (ck == 0 && i < sl) { // helps to avoid IndexOutBoundExcetion
-        C = s.charAt(i++);
-        c = (C >> (Integer.parseInt(options.get(GlobaleConstants.IBITS)) - (ck + 8))) & 0xFF;
+        cc = s.charAt(i++);
+        c = (cc >> (Integer.parseInt(options.get(GlobaleConstants.IBITS)) - (ck + 8))) & 0xFF;
       } else {
         c = 0;
       }
@@ -86,17 +86,25 @@ public final class UI32Common {
 
       /* place next word into array */
       if (Boolean.parseBoolean(options.get(GlobaleConstants.OBIGENDIAN))) {
-        if (wk == 0) w = (c << (Integer.parseInt(options.get(GlobaleConstants.OBITS)) - 8));
-        else w |= (c << ((Integer.parseInt(options.get(GlobaleConstants.OBITS)) - 8) - wk));
+        if (wk == 0) {
+          w = (c << (Integer.parseInt(options.get(GlobaleConstants.OBITS)) - 8));
+        } else {
+          w |= (c << ((Integer.parseInt(options.get(GlobaleConstants.OBITS)) - 8) - wk));
+        }
       } else {
-        if (wk == 0) w = c;
-        else w |= (c << wk);
+        if (wk == 0) {
+          w = c;
+        } else {
+          w |= (c << wk);
+        }
       }
       wk = (wk + 8) % Integer.parseInt(options.get(GlobaleConstants.OBITS));
       if (wk == 0) {
         // a.push(w);
         list.add(w);
-        if (i >= sl) break;
+        if (i >= sl) {
+          break;
+        }
       }
     }
     a = list.toArray(a);
@@ -104,7 +112,7 @@ public final class UI32Common {
   }
 
   /**
-   * bitwise rotate 32-bit number to the left
+   * bitwise rotate 32-bit number to the left.
    *
    * @param num a 32-bit number
    * @param cnt the count of the number
@@ -112,28 +120,28 @@ public final class UI32Common {
    */
   public static long getUi32Rol(long num, long cnt) {
 
-    long sResult1 = 0;
+    long result1 = 0;
     if (Integer.MIN_VALUE <= num && num <= Integer.MAX_VALUE) {
       int in = (int) num;
-      sResult1 = ((in << cnt) & 0xFFFFFFFF);
+      result1 = ((in << cnt) & 0xFFFFFFFF);
     } else {
-      sResult1 = ((num << cnt) & 0xFFFFFFFF);
+      result1 = ((num << cnt) & 0xFFFFFFFF);
     }
 
-    long sResult2 = 0;
+    long result2 = 0;
     if (Integer.MIN_VALUE <= num && num <= Integer.MAX_VALUE) {
       int in = (int) num;
-      sResult2 = ((in >>> (32 - cnt)) & 0xFFFFFFFF);
+      result2 = ((in >>> (32 - cnt)) & 0xFFFFFFFF);
     } else {
-      sResult2 = ((num >>> (32 - cnt)) & 0xFFFFFFFF);
+      result2 = ((num >>> (32 - cnt)) & 0xFFFFFFFF);
     }
     // long sResult2= ((num >>> (32 - cnt)) & 0xFFFFFFFF);
-    long sResult = sResult1 | sResult2;
-    return sResult;
+    long sresult = result1 | result2;
+    return sresult;
   }
 
   /**
-   * safely add two integers (with wrapping at 2^32)
+   * safely add two integers (with wrapping at 2^32).
    *
    * @param x the first integer
    * @param y the second integer to add
@@ -142,12 +150,12 @@ public final class UI32Common {
   public static long getUi32Add(long x, long y) {
     long lsw = (x & 0xFFFF) + (y & 0xFFFF);
     long msw = (x >> 16) + (y >> 16) + (lsw >> 16);
-    long sResult = ((int) msw << 16) | ((int) lsw & 0xFFFF);
-    return sResult;
+    long sresult = ((int) msw << 16) | ((int) lsw & 0xFFFF);
+    return sresult;
   }
 
   /**
-   * calculate the SHA-1 of an array of big-endian words, and a bit length
+   * calculate the SHA-1 of an array of big-endian words, and a bit length.
    *
    * @param x the array of big-endian words
    * @param len the bit length
@@ -160,8 +168,11 @@ public final class UI32Common {
       for (int i = 0; i < x.length; i++) {
         tab[i] = x[i];
       }
-      if (tab[len >> 5] == null) tab[len >> 5] = Long.valueOf(0x80 << (24 - len % 32));
-      else tab[len >> 5] |= 0x80 << (24 - len % 32);
+      if (tab[len >> 5] == null) {
+        tab[len >> 5] = Long.valueOf(0x80 << (24 - len % 32));
+      } else {
+        tab[len >> 5] |= 0x80 << (24 - len % 32);
+      }
     } else {
       tab = x;
       tab[len >> 5] |= 0x80 << (24 - len % 32);
@@ -177,12 +188,12 @@ public final class UI32Common {
       if (i < tab.length) {
         xx[i] = tab[i];
       } else {
-        xx[i] = 0l;
+        xx[i] = 0L;
       }
     }
     xx[currentLenght] = (long) len;
 
-    long w[] = new long[80];
+    long[] w = new long[80];
     long a = 1732584193;
     long b = -271733879;
     long c = -1732584194;
@@ -195,6 +206,7 @@ public final class UI32Common {
       long oldc = c;
       long oldd = d;
       long olde = e;
+
       for (int j = 0; j < 80; j++) {
 
         if (j < 16) {
@@ -217,6 +229,7 @@ public final class UI32Common {
         b = a;
         a = t;
       }
+
       a = getUi32Add(a, olda);
       b = getUi32Add(b, oldb);
       c = getUi32Add(c, oldc);
@@ -234,7 +247,7 @@ public final class UI32Common {
   }
 
   /**
-   * perform the appropriate triplet combination function for the current iteration
+   * perform the appropriate triplet combination function for the current iteration.
    *
    * @param t the current UI32
    * @param b the first element of the triplet to combine
@@ -243,14 +256,20 @@ public final class UI32Common {
    * @return the appropriate triplet combination function for the current
    */
   public static final long getSha1Ft(long t, long b, long c, long d) {
-    if (t < 20) return (b & c) | ((~b) & d);
-    if (t < 40) return b ^ c ^ d;
-    if (t < 60) return (b & c) | (b & d) | (c & d);
+    if (t < 20) {
+      return (b & c) | ((~b) & d);
+    }
+    if (t < 40) {
+      return b ^ c ^ d;
+    }
+    if (t < 60) {
+      return (b & c) | (b & d) | (c & d);
+    }
     return b ^ c ^ d;
   }
 
   /**
-   * determine the appropriate additive constant for the current iteration
+   * determine the appropriate additive constant for the current iteration.
    *
    * @param t the current to determine
    * @return the appropriate additive constant for the current iteration
@@ -260,20 +279,20 @@ public final class UI32Common {
   }
 
   /**
-   * array to string conversion
+   * array to string conversion.
    *
    * @param a the input array to convert
-   * @param _options, map of options
+   * @param options2 map of options
    * @return the appropriate additive constant for the current iteration
    */
-  public static String getA2s(long[] a, Map<String, String> _options) {
+  public static String getA2s(long[] a, Map<String, String> options2) {
     /* determine options */
 
     Map<String, String> options = new HashMap<>();
     options.put("ibits", "8");
     options.put("ibigendian", "true");
 
-    for (Map.Entry<String, String> entry : _options.entrySet()) {
+    for (Map.Entry<String, String> entry : options2.entrySet()) {
       options.put(entry.getKey(), entry.getValue());
     }
 
@@ -281,8 +300,9 @@ public final class UI32Common {
     String s = "";
     long imask = 0xFFFFFFFF;
 
-    if (Integer.parseInt(options.get(GlobaleConstants.IBITS)) < 32)
+    if (Integer.parseInt(options.get(GlobaleConstants.IBITS)) < 32) {
       imask = (1 << Integer.parseInt(options.get(GlobaleConstants.IBITS))) - 1;
+    }
     int al = a.length;
     for (int i = 0; i < al; i++) {
       /* fetch next word from array */
@@ -290,7 +310,7 @@ public final class UI32Common {
 
       /* place next octet into string */
       for (int j = 0; j < Integer.parseInt(options.get(GlobaleConstants.IBITS)); j += 8) {
-        if (Boolean.parseBoolean(options.get(GlobaleConstants.IBIGENDIAN)))
+        if (Boolean.parseBoolean(options.get(GlobaleConstants.IBIGENDIAN))) {
           s +=
               new String(
                   new char[] {
@@ -300,7 +320,9 @@ public final class UI32Common {
                                     - j))
                             & 0xFF)
                   });
-        else s += new String(new char[] {(char) (((int) w >> j) & 0xFF)});
+        } else {
+          s += new String(new char[] {(char) (((int) w >> j) & 0xFF)});
+        }
       }
     }
     return s;

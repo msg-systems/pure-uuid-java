@@ -26,9 +26,7 @@ package com.graphqlio.uuid.helpers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
-
 import org.apache.commons.lang.math.NumberUtils;
-
 import com.graphqlio.uuid.domain.GlobaleConstants;
 
 /**
@@ -42,7 +40,7 @@ public final class ParseUUID {
 
   // UUID.prototype.parse = function (str, type) {
   /**
-   * API method: parse UUID from usual textual representation
+   * API method: parse UUID from usual textual representation.
    *
    * @param str a usual textual representation
    * @param type type of encoding form
@@ -57,24 +55,28 @@ public final class ParseUUID {
     String pattern =
         "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$";
     Pattern r = Pattern.compile(pattern);
-    if (NumberUtils.isNumber(str))
+    if (NumberUtils.isNumber(str)) {
       throw new Exception("UUID: parse: invalid argument (type string expected)");
-    if (type == "z85") getZ85Decode(str, bytes);
-    else if (type == "b16") getHs2(str, 0, 35, bytes, 0);
-    else if (type == null || type == "Nothing" || type == "std") {
-
+    }
+    if (type == "z85") {
+      getZ85Decode(str, bytes);
+    } else if (type == "b16") {
+      getHs2(str, 0, 35, bytes, 0);
+    } else if (type == null || type == "Nothing" || type == "std") {
       map.put("nil", "00000000-0000-0000-0000-000000000000");
       map.put("ns:DNS", "6ba7b810-9dad-11d1-80b4-00c04fd430c8");
       map.put("ns:URL", "6ba7b811-9dad-11d1-80b4-00c04fd430c8");
       map.put("ns:OID", "6ba7b812-9dad-11d1-80b4-00c04fd430c8");
       map.put("ns:X500", "6ba7b814-9dad-11d1-80b4-00c04fd430c8");
     }
-    if (map.get(str) != null) str = map.get(str);
-    // else if (!str.match())
-    else if (!r.matcher(str).find())
+    if (map.get(str) != null) {
+      str = map.get(str);
+      // else if (!str.match())
+    } else if (!r.matcher(str).find()) {
       throw new Exception(
           "UUID: parse: invalid string representation "
               + "(expected \"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\")");
+    }
     getHs2(str, 0, 7, bytes, 0);
     getHs2(str, 9, 12, bytes, 4);
     getHs2(str, 14, 17, bytes, 6);
@@ -85,6 +87,8 @@ public final class ParseUUID {
   }
 
   /**
+   * getHs2.
+   *
    * @param str str
    * @param begin begin
    * @param end end
@@ -101,6 +105,8 @@ public final class ParseUUID {
   }
 
   /**
+   * getZ85Decode.
+   *
    * @param str str
    * @param dest dest
    * @return Nothing Nothing
@@ -108,14 +114,21 @@ public final class ParseUUID {
    */
   private static long[] getZ85Decode(String str, long[] dest) throws Exception {
     int l = str.length();
-    if ((l % 5) != 0)
+    if ((l % 5) != 0) {
       throw new Exception("z85_decode: invalid input length (multiple of 5 expected)");
-    if (dest == null) dest = new long[l * 4 / 5];
-    int i = 0, j = 0, value = 0;
+    }
+    if (dest == null) {
+      dest = new long[l * 4 / 5];
+    }
+    int i = 0;
+    int j = 0;
+    int value = 0;
     while (i < l) {
       // int idx = str.charCodeAt(i++) - 32;
       int idx = str.charAt(i++) - 32;
-      if (idx < 0 || idx >= GlobaleConstants.Z85_DECODER.length) break;
+      if (idx < 0 || idx >= GlobaleConstants.Z85_DECODER.length) {
+        break;
+      }
       value = (int) ((value * 85) + GlobaleConstants.Z85_DECODER[idx]);
       if ((i % 5) == 0) {
         int divisor = 256 * 256 * 256;

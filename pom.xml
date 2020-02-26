@@ -25,7 +25,7 @@
 
 	<groupId>com.graphqlio</groupId>
 	<artifactId>pure-uuid-java</artifactId>
-	<version>0.2.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 	<name>pure uuid</name>
 
@@ -102,9 +102,10 @@
 				<configuration>
 					<serverId>ossrh</serverId>
 					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-					<autoReleaseAfterClose>false</autoReleaseAfterClose>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
 				</configuration>
 			</plugin>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
@@ -126,25 +127,12 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- 
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>license-maven-plugin</artifactId>
-				<version>1.18</version>
-				<configuration>
-					<excludedLicenses>
-						<excludedLicense>gpl_v3</excludedLicense>
-					</excludedLicenses>
-					<execution>
-						<id>validate</id>
-						<phase>validate</phase>
-						<goals>
-							<goal>add-third-party</goal>
-						</goals>
-					</execution>
-				</configuration>
-			</plugin>
-			 -->
+			
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>license-maven-plugin</artifactId> 
+				<version>1.18</version> <configuration> <excludedLicenses> <excludedLicense>gpl_v3</excludedLicense> 
+				</excludedLicenses> <execution> <id>validate</id> <phase>validate</phase> 
+				<goals> <goal>add-third-party</goal> </goals> </execution> </configuration> 
+				</plugin> -->
 		</plugins>
 	</build>
 
@@ -186,14 +174,13 @@
 								<phase>verify</phase>
 								<goals>
 									<goal>sign</goal>
-								</goals>
-								 <configuration>
-                          						<!-- Prevent `gpg` from using pinentry programs -->
-                          						<gpgArguments>
-                              							<arg>--pinentry-mode</arg>
-                              							<arg>loopback</arg>
-                          						</gpgArguments>
-                      						</configuration>
+								</goals>		
+								<configuration> 
+									<gpgArguments>
+										<arg>--pinentry-mode</arg>
+										<arg>loopback</arg>
+									</gpgArguments>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>

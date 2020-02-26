@@ -112,12 +112,12 @@ public final class PcgPrng {
    *
    * <p>http://www.pcg-random.org/pdf/hmc-cs-2014-0905.pdf This is the PCG-XSH-RR variant ("xorshift
    * high (bits), random rotation"), based on 32-bit output, 64-bit internal state and the formulas:
-   * state = state * MUL + INC output = rotate32((state ^ (state >> 18)) >> 27, state >> 59)
    *
    * <p>var PCG = function (seed).
    *
    * @param store input
    * @return a pseudoNumber
+   * @throws Exception may be thrown by createMagicConstant
    */
   public static long createMagicConstant(long[] store) throws Exception {
 

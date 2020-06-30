@@ -202,9 +202,9 @@
 	</distributionManagement>
 
 	<scm>
-		<connection>scm:git:git@github.com:Thinkenterprise/pure-uuid-java.git</connection>
-		<developerConnection>scm:git:git@github.com:Thinkenterprise/pure-uuid-java.git</developerConnection>
-		<url>https://github.com/Thinkenterprise/pure-uuid-java</url>
+		<connection>scm:git:git@github.com:msg-systems/pure-uuid-java.git</connection>
+		<developerConnection>scm:git:git@github.com:msg-systems/pure-uuid-java.git</developerConnection>
+		<url>https://github.com/msg-systems/pure-uuid-java</url>
 	</scm>
 
 </project>

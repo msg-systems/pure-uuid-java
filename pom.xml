@@ -26,7 +26,7 @@
 
 	<groupId>com.graphqlio</groupId>
 	<artifactId>pure-uuid-java</artifactId>
-	<version>0.0.12</version>
+	<version>0.0.13</version>
 	<packaging>jar</packaging>
 	<name>pure uuid</name>
 
